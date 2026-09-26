@@ -1,0 +1,22 @@
+{
+  "perfil": {
+    "nombre": "Tu Nombre",
+    "usuario_github": "tu-usuario",
+    "descripcion": "Portafolio de proyectos publicados con GitHub Pages.",
+    "email": "tu-email@example.com"
+  },
+  "proyectos": [
+    {
+      "id": "ejemplo-portafolio",
+      "nombre": "Portafolio (este repositorio)",
+      "descripcion": "Sitio del portafolio generado y publicado automáticamente con GitHub Actions y GitHub Pages.",
+      "repo": "tu-usuario/portafolio",
+      "url": "https://github.com/tu-usuario/portafolio",
+      "demo": "https://tu-usuario.github.io/portafolio/",
+      "tecnologias": ["HTML", "CSS", "JavaScript", "GitHub Actions", "GitHub Pages"],
+      "categoria": "web",
+      "destacado": true,
+      "fecha": "2026-09-26"
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+name: Publicar portafolio en GitHub Pages
+
+# Se ejecuta al hacer push a main (cuando agregues nuevos proyectos
+# a data/projects.json) y también permite ejecutarlo manualmente.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "data/**"
+      - "templates/**"
+      - "static/**"
+      - "scripts/**"
+      - ".github/workflows/deploy.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  construir:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validar data/projects.json
+        run: python -c "import json; json.load(open('data/projects.json', encoding='utf-8'))"
+
+      - name: Generar sitio estático en _site/
+        run: python scripts/build.py
+
+      - name: Configurar GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Subir artefacto del sitio
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  publicar:
+    needs: construir
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.salida.outputs.page_url }}
+    steps:
+      - name: Publicar en GitHub Pages
+        id: salida
+        uses: actions/deploy-pages@v4
