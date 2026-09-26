@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portafolio de proyectos publicados con GitHub Pages." />
+  <title>Tu Nombre · Portafolio</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <h1>👋 Hola, soy <span class="accent">Tu Nombre</span></h1>
+    <p class="subtitulo">Portafolio de proyectos publicados con GitHub Pages.</p>
+    <p class="links">
+      <a href="https://github.com/tu-usuario" target="_blank" rel="noopener">GitHub</a> ·
+      <a href="mailto:tu-email@example.com">Email</a>
+    </p>
+    <p class="contador">1 proyectos publicados</p>
+  </header>
+
+  <main>
+    <section id="proyectos">
+      <h2>Proyectos</h2>
+      <nav class="filtros"><button class="filtro activo" data-filtro="todas">Todas</button><button class="filtro" data-filtro="web">Web</button></nav>
+      <div class="grid">
+        <article class="card" data-categoria="web">
+          <div class="card-header">
+            <h3>Portafolio (este repositorio)</h3>
+            <span class="destacado-badge">★ Destacado</span>
+          </div>
+          <p class="desc">Sitio del portafolio generado y publicado automáticamente con GitHub Actions y GitHub Pages.</p>
+          <div class="tags"><span class="tag">HTML</span> <span class="tag">CSS</span> <span class="tag">JavaScript</span> <span class="tag">GitHub Actions</span> <span class="tag">GitHub Pages</span></div>
+          <footer class="card-footer">
+            <span class="meta">Web · 2026-09-26</span>
+            <div class="actions"><a class="btn" href="https://github.com/tu-usuario/portafolio" target="_blank" rel="noopener">Código</a> <a class="btn btn-demo" href="https://tu-usuario.github.io/portafolio/" target="_blank" rel="noopener">Demo</a></div>
+          </footer>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 Tu Nombre · Generado con GitHub Actions y publicado en GitHub Pages</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
