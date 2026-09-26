@@ -1,21 +1,141 @@
 {
   "perfil": {
-    "nombre": "Tu Nombre",
-    "usuario_github": "tu-usuario",
-    "descripcion": "Portafolio de proyectos publicados con GitHub Pages.",
-    "email": "tu-email@example.com"
+    "nombre": "JR2 TechHub",
+    "usuario_github": "jr2techhub",
+    "titulo": "Software Engineer · .NET / Cloud / Data",
+    "descripcion": "Construyo plataformas SaaS, integraciones de datos y herramientas de automatización. Este portafolio se sincroniza automáticamente con mis repositorios de GitHub y se publica en GitHub Pages.",
+    "email": "jr2techhub@users.noreply.github.com",
+    "enlaces": {
+      "github": "https://github.com/jr2techhub"
+    }
   },
   "proyectos": [
     {
-      "id": "ejemplo-portafolio",
-      "nombre": "Portafolio (este repositorio)",
-      "descripcion": "Sitio del portafolio generado y publicado automáticamente con GitHub Actions y GitHub Pages.",
-      "repo": "tu-usuario/portafolio",
-      "url": "https://github.com/tu-usuario/portafolio",
-      "demo": "https://tu-usuario.github.io/portafolio/",
-      "tecnologias": ["HTML", "CSS", "JavaScript", "GitHub Actions", "GitHub Pages"],
-      "categoria": "web",
+      "id": "erp-lite",
+      "nombre": "ERP-Lite",
+      "descripcion": "ERP modular multi-tenant (SaaS) para pequeños emprendimientos construido con .NET 10 y Clean Architecture. Frontend Blazor WASM, PostgreSQL vía EF Core, pagos con Stripe e integración de IA con Google Gemini (LightERP.AI).",
+      "repo": "jr2techhub/ERP-Lite",
+      "url": "https://github.com/jr2techhub/ERP-Lite",
+      "demo": null,
+      "tecnologias": [
+        "C#",
+        ".NET 10",
+        "Blazor WASM",
+        "PostgreSQL",
+        "EF Core",
+        "Clean Architecture",
+        "Stripe",
+        "Google Gemini"
+      ],
+      "categoria": "backend",
       "destacado": true,
+      "fecha": "2026-09-10"
+    },
+    {
+      "id": "marketscrapersolution",
+      "nombre": "MarketScraperSolution",
+      "descripcion": "Plataforma de web scraping y procesamiento de datos en .NET para recopilar y analizar anuncios clasificados de múltiples marketplaces. Incluye un Dynamic Market Intelligence Agent con patrones de scraping configurables vía JSON (no-code).",
+      "repo": "jr2techhub/MarketScraperSolution",
+      "url": "https://github.com/jr2techhub/MarketScraperSolution",
+      "demo": null,
+      "tecnologias": [
+        "C#",
+        ".NET",
+        "Web Scraping",
+        "Pattern Engine",
+        "JSON Config"
+      ],
+      "categoria": "datos",
+      "destacado": true,
+      "fecha": "2026-09-18"
+    },
+    {
+      "id": "market-scraper-app",
+      "nombre": "market-scraper-app",
+      "descripcion": "Aplicación web del ecosistema MarketScraper: dashboard interactivo construido con React 19 + Vite, gráficos con Recharts, i18n con i18next y diseño modular en SCSS. Publicada en GitHub Pages con despliegue automático.",
+      "repo": "jr2techhub/market-scraper-app",
+      "url": "https://github.com/jr2techhub/market-scraper-app",
+      "demo": "https://jr2techhub.github.io/market-scraper-app/",
+      "tecnologias": [
+        "React 19",
+        "Vite",
+        "Recharts",
+        "i18next",
+        "SCSS",
+        "GitHub Pages"
+      ],
+      "categoria": "frontend",
+      "destacado": true,
+      "fecha": "2026-09-03"
+    },
+    {
+      "id": "techhub-sso",
+      "nombre": "TechHub-SSO",
+      "descripcion": "Servidor de identidad centralizado (Single Sign-On) para el ecosistema TechHub basado en OpenIddict y .NET 10. OAuth2 / OpenID Connect con flujo Authorization Code + PKCE, gestión multi-tenant y trials automáticos.",
+      "repo": "jr2techhub/TechHub-SSO",
+      "url": "https://github.com/jr2techhub/TechHub-SSO",
+      "demo": null,
+      "tecnologias": [
+        "C#",
+        ".NET 10",
+        "OpenIddict",
+        "OAuth2",
+        "OpenID Connect",
+        "PKCE"
+      ],
+      "categoria": "backend",
+      "destacado": false,
+      "fecha": "2026-09-10"
+    },
+    {
+      "id": "tropicfeel-netsuite-integration",
+      "nombre": "Tropicfeel NetSuite Integration",
+      "descripcion": "Integración E-commerce ↔ ERP: microservicio broker en Java/Spring que sincroniza ítems, órdenes de compra y envíos inbound entre NetSuite, Everstox/Deliverr y marketplaces mediante flujos de eventos y colas DLQ.",
+      "repo": "jr2techhub/tropicfeel-netsuite-integration",
+      "url": "https://github.com/jr2techhub/tropicfeel-netsuite-integration",
+      "demo": null,
+      "tecnologias": [
+        "Java",
+        "Spring Boot",
+        "NetSuite",
+        "Everstox API",
+        "Jenkins",
+        "Docker"
+      ],
+      "categoria": "integraciones",
+      "destacado": true,
+      "fecha": "2026-08-27"
+    },
+    {
+      "id": "hublanding",
+      "nombre": "Hublanding",
+      "descripcion": "Landing page del Hub tecnológico.",
+      "repo": "jr2techhub/Hublanding",
+      "url": "https://github.com/jr2techhub/Hublanding",
+      "demo": null,
+      "tecnologias": [
+        "HTML",
+        "CSS"
+      ],
+      "categoria": "frontend",
+      "destacado": false,
+      "fecha": "2026-08-10"
+    },
+    {
+      "id": "portafolio",
+      "nombre": "Portafolio (este sitio)",
+      "descripcion": "Sitio del portafolio generado estáticamente con Python y publicado en GitHub Pages. Se auto-sincroniza con la API de GitHub: cada nuevo repo aparece automáticamente al ejecutarse el workflow.",
+      "repo": "jr2techhub/portafolio",
+      "url": "https://github.com/jr2techhub/portafolio",
+      "demo": "https://jr2techhub.github.io/portafolio/",
+      "tecnologias": [
+        "Python",
+        "GitHub Actions",
+        "GitHub Pages",
+        "REST API"
+      ],
+      "categoria": "web",
+      "destacado": false,
       "fecha": "2026-09-26"
     }
   ]

@@ -3,35 +3,65 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="{{DESCRIPCION}}" />
   <title>{{TITULO}} · Portafolio</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta name="description" content="{{DESCRIPCION}}" />
+  <meta name="theme-color" content="#0b1020" />
+  <link rel="canonical" href="{{URL_BASE}}" />
+  <link rel="icon" type="image/svg+xml" href="{{FAVICON}}" />
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="{{TITULO}} · Portafolio" />
+  <meta property="og:description" content="{{DESCRIPCION}}" />
+  <meta property="og:url" content="{{URL_BASE}}" />
+  <meta property="og:image" content="{{AVATAR}}" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="{{TITULO}} · Portafolio" />
+  <meta name="twitter:description" content="{{DESCRIPCION}}" />
+  <link rel="preconnect" href="https://github.com" />
+  <link rel="stylesheet" href="{{CSS_URL}}" />
+  <script>document.documentElement.classList.add("js")</script>
 </head>
 <body>
+  <a class="salto" href="#proyectos">Saltar a proyectos</a>
+
   <header class="hero">
-    <h1>👋 Hola, soy <span class="accent">{{NOMBRE}}</span></h1>
-    <p class="subtitulo">{{RESUMEN}}</p>
-    <p class="links">
-      <a href="https://github.com/{{USUARIO_GITHUB}}" target="_blank" rel="noopener">GitHub</a> ·
-      <a href="mailto:{{EMAIL}}">Email</a>
-    </p>
-    <p class="contador">{{CANTIDAD}} proyectos publicados</p>
+    <div class="hero-contenido">
+      <img class="avatar" src="{{AVATAR}}" alt="Foto de perfil de {{NOMBRE}}" width="96" height="96" loading="eager" />
+      <div class="hero-texto">
+        <h1><span class="ola" aria-hidden="true">👋</span> Hola, soy <span class="accent">{{NOMBRE}}</span></h1>
+        <p class="rol">{{TITULO_PROFESIONAL}}</p>
+        <p class="subtitulo">{{RESUMEN}}</p>
+        <nav class="links" aria-label="Enlaces de contacto">
+          <a class="chip" href="https://github.com/{{USUARIO_GITHUB}}" target="_blank" rel="noopener me">
+            <svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.62-.01 1.05.58 1.2.82.72 1.2 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+            GitHub
+          </a>
+          <a class="chip" href="mailto:{{EMAIL}}">✉ Email</a>
+          <span class="chip chip-estatico">{{CANTIDAD}} proyectos</span>
+        </nav>
+      </div>
+    </div>
+    <div class="glow" aria-hidden="true"></div>
   </header>
 
-  <main>
-    <section id="proyectos">
-      <h2>Proyectos</h2>
-      <nav class="filtros">{{CATEGORIAS}}</nav>
-      <div class="grid">
+  <main id="contenido">
+    <section id="proyectos" class="seccion" aria-labelledby="titulo-proyectos">
+      <div class="cabecera-seccion">
+        <h2 id="titulo-proyectos">Proyectos</h2>
+        <input id="buscador" type="search" placeholder="Buscar por nombre, tecnología…" aria-label="Buscar proyectos" autocomplete="off" />
+      </div>
+      <nav class="filtros" aria-label="Filtrar proyectos por categoría">{{CATEGORIAS}}</nav>
+      <div class="grid" role="list">
 {{TARJETAS}}
       </div>
+      <p id="vacio" class="vacio" hidden>No hay proyectos que coincidan con la búsqueda o el filtro.</p>
     </section>
   </main>
 
-  <footer>
-    <p>© {{ANIO}} {{NOMBRE}} · Generado con GitHub Actions y publicado en GitHub Pages</p>
+  <footer class="pie">
+    <p>© {{ANIO}} {{NOMBRE}} · Generado automáticamente con GitHub Actions · Publicado en GitHub Pages · <a href="https://github.com/{{USUARIO_GITHUB}}/portafolio">Fuente</a></p>
   </footer>
 
-  <script src="app.js"></script>
+  <script src="{{JS_URL}}" defer></script>
 </body>
 </html>

@@ -1,55 +1,43 @@
-# Portafolio
+# 🌐 JR2 TechHub — Portafolio
 
-Portafolio de proyectos publicado automáticamente en **GitHub Pages** mediante un workflow de **GitHub Actions**.
+Sitio de portafolio **production ready** publicado en GitHub Pages:
+👉 **https://jr2techhub.github.io/portafolio/**
+
+## Características
+
+- ⚡ **Auto-sincronización con GitHub**: un workflow diario consulta la API REST y añade automáticamente cualquier repositorio nuevo (sin forks, sin archivados, sin vacíos). Los campos editoriales (descripción, tecnologías, categoría, destacado) se respetan; solo se refrescan metadatos técnicos.
+- 🎨 Diseño oscuro moderno, responsive, con filtros por categoría, búsqueda instantánea (atajo `/`), badges de destacados y acento de color por lenguaje.
+- 🔒 Production ready: assets con hash de contenido (cache-busting), HTML semántico y accesible (ARIA, skip-link, `prefers-reduced-motion`), metaetiquetas Open Graph/Twitter, sitemap, favicon SVG, `.nojekyll`.
+- 🧱 Generador estático en Python puro (sin dependencias externas).
 
 ## Estructura
 
 ```
-data/projects.json      ← Aquí agregas tus proyectos (única fuente de datos)
-templates/base.html     ← Plantilla HTML del sitio
-static/styles.css       ← Estilos
-static/app.js           ← Filtro por categorías
-scripts/build.py        ← Generador estático (sin dependencias externas)
-.github/workflows/deploy.yml ← CI/CD: construye y publica en GitHub Pages
-_site/                  ← Salida generada (ignorada por git)
+data/projects.json        ← única fuente de datos del sitio
+scripts/build.py          ← genera _site/ (index + assets hasheados)
+scripts/sync_repos.py     ← sincroniza proyectos con la API de GitHub
+templates/base.html       ← plantilla del sitio
+static/                   ← styles.css, app.js, favicon.svg
+.github/workflows/deploy.yml ← CI/CD: sync + build + publish (rama gh-pages)
 ```
 
-## Cómo agregar un nuevo proyecto
+## Flujo de trabajo
 
-1. Edita `data/projects.json` y añade una entrada al array `proyectos`:
+| Acción | Resultado |
+|---|---|
+| Push a `master` (datos/plantilla/assets/scripts) | Build y publicación inmediata |
+| Crear un repo nuevo en GitHub | Aparece solo en el siguiente cron diario (07:00 UTC) o al ejecutar "Run workflow" manualmente |
+| Ejecución manual (Actions → Publicar portafolio → Run workflow) | Sync + build + publish bajo demanda |
 
-```json
-{
-  "id": "mi-proyecto",
-  "nombre": "Mi Proyecto",
-  "descripcion": "Qué hace y por qué es interesante.",
-  "url": "https://github.com/tu-usuario/mi-proyecto",
-  "demo": "https://tu-usuario.github.io/mi-proyecto/",
-  "tecnologias": ["Python", "Flask"],
-  "categoria": "web",
-  "destacado": false,
-  "fecha": "2026-09-26"
-}
-```
+### Personalizar un proyecto detectado automáticamente
 
-Categorías disponibles: `web`, `datos`, `mobile`, `ia`, `devops`, `otros`.
+Las entradas creadas por el sync llevan `"sugerido": true` y valores por defecto. Edita en `data/projects.json`: `descripcion`, `tecnologias`, `categoria` (`frontend`, `backend`, `datos`, `integraciones`, `web`, …), `destacado` y `demo`, y elimina el flag `sugerido`. Haz push a `master` y listo.
 
-2. Haz push a la rama `master`. El workflow se dispara solo, valida el JSON,
-   genera `_site/` y lo publica en GitHub Pages.
-
-## Construir localmente
+## Desarrollo local
 
 ```bash
-python3 scripts/build.py
-# abre _site/index.html en el navegador
+python3 scripts/build.py        # genera ./_site
+python3 -m http.server -d _site 8000   # previsualiza en http://localhost:8000
 ```
 
-## Configuración inicial en GitHub (una sola vez)
-
-1. En el repositorio: **Settings → Pages → Source: GitHub Actions**.
-2. Reemplaza los valores de ejemplo (`tu-usuario`, `Tu Nombre`, etc.) en
-   `data/projects.json` dentro del objeto `perfil`.
-3. La URL publicada será: `https://<tu-usuario>.github.io/portafolio/`
-
-El workflow también puede ejecutarse manualmente desde
-**Actions → Publicar portafolio en GitHub Pages → Run workflow**.
+El workflow publica en la rama `gh-pages` mediante `JamesIves/github-pages-deploy-action`. **Nunca** abras PRs desde `gh-pages` hacia `master`: es una rama de artefactos generada automáticamente.

@@ -1,7 +1,10 @@
 name: Publicar portafolio en GitHub Pages
 
-# Se ejecuta al hacer push a master (cuando agregues nuevos proyectos
-# a data/projects.json) y también permite ejecutarlo manualmente.
+# El portafolio se auto-actualiza:
+#  - push a master (datos, plantilla, assets o scripts) → rebuild + publish
+#  - cron diario 07:00 UTC → sincroniza con la API de GitHub: si creaste un
+#    repo nuevo, aparece automáticamente (commit "chore(portafolio): sync")
+#  - workflow_dispatch → ejecución manual bajo demanda
 on:
   push:
     branches: [master]
@@ -11,6 +14,8 @@ on:
       - "static/**"
       - "scripts/**"
       - ".github/workflows/deploy.yml"
+  schedule:
+    - cron: "0 7 * * *"
   workflow_dispatch:
 
 permissions:
@@ -21,11 +26,47 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  sincronizar:
+    if: github.event_name != 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout (rama master)
+        uses: actions/checkout@v4
+        with:
+          ref: master
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Sincronizar proyectos desde la API de GitHub
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/sync_repos.py
+
+      - name: Hacer commit y push de los cambios detectados
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [ -n "$(git status --porcelain data/projects.json)" ]; then
+            git add data/projects.json
+            git commit -m "chore(portafolio): sincronizar proyectos desde GitHub [skip ci]"
+            git push origin master
+          else
+            echo "Sin cambios nuevos; el sitio se reconstruye igualmente."
+          fi
+
   construir-y-publicar:
+    needs: [sincronizar]
+    if: always() && needs.sincronizar.result != 'failure'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout del repositorio (rama master)
         uses: actions/checkout@v4
+        with:
+          ref: master
 
       - name: Configurar Python
         uses: actions/setup-python@v5
@@ -37,6 +78,12 @@ jobs:
 
       - name: Generar sitio estático en _site/
         run: python scripts/build.py
+
+      - name: Verificar salida del build
+        run: |
+          test -s _site/index.html
+          grep -q "</html>" _site/index.html
+          echo "index.html OK ($(wc -c < _site/index.html) bytes)"
 
       - name: Publicar en la rama gh-pages (GitHub Pages)
         uses: JamesIves/github-pages-deploy-action@v4
