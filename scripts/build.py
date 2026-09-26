@@ -140,6 +140,9 @@ def construir():
         for c in cats_presentes
     )
 
+    # Datos embebidos para la ficha de detalle (escapados para <script>)
+    datos_json = json.dumps(proyectos, ensure_ascii=False).replace("</", "<\\/")
+
     nombre = perfil.get("nombre", "Portafolio")
     descripcion = perfil.get("descripcion", "")
     url_base = f"https://{perfil.get('usuario_github', '')}.github.io/portafolio/"
@@ -181,6 +184,7 @@ def construir():
         .replace("{{JS_URL}}", e(refs.get("app.js", "app.js")))
         .replace("{{FAVICON}}", e(refs.get("favicon.svg", "favicon.svg")))
     )
+    pagina = pagina.replace("{{DATOS_JSON}}", datos_json)
     (SITE / "index.html").write_text(pagina, encoding="utf-8")
     (SITE / ".nojekyll").write_text("", encoding="utf-8")
 

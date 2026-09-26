@@ -62,6 +62,16 @@
     <p>© {{ANIO}} {{NOMBRE}} · Generado automáticamente con GitHub Actions · Publicado en GitHub Pages · <a href="https://github.com/{{USUARIO_GITHUB}}/portafolio">Fuente</a></p>
   </footer>
 
+    <script id="datos-portafolio" type="application/json">{{DATOS_JSON}}</script>
   <script src="{{JS_URL}}" defer></script>
+
+  <!-- Ficha de detalle (se rellena dinámicamente al hacer clic en una tarjeta) -->
+  <div class="modal" id="modal-detalle" role="dialog" aria-modal="true" aria-labelledby="detalle-nombre" hidden>
+    <div class="modal-fondo" data-cerrar></div>
+    <div class="modal-panel">
+      <button class="modal-cerrar" data-cerrar aria-label="Cerrar detalle">&times;</button>
+      <div id="detalle-contenido"></div>
+    </div>
+  </div>
 </body>
 </html>
