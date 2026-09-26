@@ -61,11 +61,8 @@ a:hover { text-decoration: underline; }
   font-size: 0.98rem;
 }
 .marca:hover { text-decoration: none; }
-.marca .punto {
-  width: 10px; height: 10px; border-radius: 3px;
-  background: linear-gradient(135deg, var(--acento-vivo), #3e4c73);
-  box-shadow: 0 0 12px rgba(124, 147, 214, 0.5);
-}
+.logo-marca { color: var(--texto); flex-shrink: 0; }
+.nombre-marca sup { font-size: 0.62em; vertical-align: super; line-height: 0; letter-spacing: 0; }
 .barra nav { display: flex; gap: 1.4rem; font-size: 0.88rem; }
 .barra nav a { color: var(--texto-suave); font-weight: 500; }
 .barra nav a:hover { color: var(--texto); text-decoration: none; }
@@ -208,10 +205,16 @@ a:hover { text-decoration: underline; }
 
 /* ---------- Pie ---------- */
 .pie {
+  background: #05070d;
   border-top: 1px solid var(--borde);
   text-align: center; color: var(--texto-suave); font-size: 0.82rem;
-  padding: 1.75rem 1rem; max-width: var(--ancho); margin: 0 auto;
+  padding: 2.25rem 1rem 2rem;
 }
+.pie-inner { max-width: var(--ancho); margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 0.45rem; }
+.marca-pie { color: var(--texto); font-size: 0.95rem; }
+.marca-pie:hover { text-decoration: none; }
+.pie-credito { margin: 0.35rem 0 0; color: var(--texto); font-weight: 600; letter-spacing: 0.02em; font-size: 0.85rem; }
+.pie-meta { margin: 0; color: var(--texto-suave); font-size: 0.78rem; }
 .pie a { color: var(--texto-suave); text-decoration: underline; text-underline-offset: 3px; }
 .pie a:hover { color: var(--texto); }
 

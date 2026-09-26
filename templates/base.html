@@ -26,8 +26,12 @@
 
   <div class="barra">
     <div class="barra-inner">
-      <a class="marca" href="{{URL_BASE}}">
-        <span class="punto" aria-hidden="true"></span>{{NOMBRE}}
+      <a class="marca" href="{{URL_BASE}}" aria-label="JR² Tech — inicio">
+        <svg class="logo-marca" viewBox="0 0 48 48" width="30" height="30" aria-hidden="true">
+          <rect x="1" y="1" width="46" height="46" rx="12" fill="#05070d" stroke="rgba(255,255,255,0.16)" stroke-width="1.5"/>
+          <text x="22" y="32" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" letter-spacing="-0.5" fill="currentColor" text-anchor="middle">JR<tspan dy="-7" font-size="12">2</tspan></text>
+        </svg>
+        <span class="nombre-marca">JR<sup>2</sup>&nbsp;Tech</span>
       </a>
       <nav aria-label="Navegación principal">
         <a href="#proyectos">Proyectos</a>
@@ -71,7 +75,17 @@
   </main>
 
   <footer class="pie">
-    <p>© {{ANIO}} {{NOMBRE}} · Generado automáticamente con GitHub Actions · Publicado en GitHub Pages · <a href="https://github.com/{{USUARIO_GITHUB}}/portafolio">Fuente</a></p>
+    <div class="pie-inner">
+      <a class="marca marca-pie" href="{{URL_BASE}}" aria-label="JR² Tech — inicio">
+        <svg class="logo-marca" viewBox="0 0 48 48" width="26" height="26" aria-hidden="true">
+          <rect x="1" y="1" width="46" height="46" rx="12" fill="#05070d" stroke="rgba(255,255,255,0.16)" stroke-width="1.5"/>
+          <text x="22" y="32" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" letter-spacing="-0.5" fill="currentColor" text-anchor="middle">JR<tspan dy="-7" font-size="12">2</tspan></text>
+        </svg>
+        <span class="nombre-marca">JR<sup>2</sup>&nbsp;Tech</span>
+      </a>
+      <p class="pie-credito">Junior Rico Reyes · Portafolio profesional</p>
+      <p class="pie-meta">© {{ANIO}} · Generado automáticamente con GitHub Actions · Publicado en GitHub Pages · <a href="https://github.com/{{USUARIO_GITHUB}}/portafolio">Fuente</a></p>
+    </div>
   </footer>
 
     <script id="datos-portafolio" type="application/json">{{DATOS_JSON}}</script>
