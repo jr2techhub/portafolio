@@ -52,7 +52,8 @@ a:hover { text-decoration: underline; }
 }
 .barra-inner {
   max-width: var(--ancho); margin: 0 auto;
-  padding: 0.75rem 1.5rem;
+  padding: 2px 1.5rem;
+  height: 64px;
   display: flex; align-items: center; justify-content: space-between; gap: 1rem;
 }
 .marca {
@@ -62,6 +63,8 @@ a:hover { text-decoration: underline; }
 }
 .marca:hover { text-decoration: none; }
 .logo-marca { color: var(--texto); flex-shrink: 0; }
+/* Logo del header: casi a toda la altura de la barra, con 2px de margen arriba/abajo */
+.logo-header { width: 60px; height: 60px; }
 .nombre-marca sup { font-size: 0.62em; vertical-align: super; line-height: 0; letter-spacing: 0; }
 .barra nav { display: flex; gap: 1.4rem; font-size: 0.88rem; }
 .barra nav a { color: var(--texto-suave); font-weight: 500; }
@@ -214,6 +217,8 @@ a:hover { text-decoration: underline; }
 .pie-inner { max-width: var(--ancho); margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 0.45rem; }
 .marca-pie { color: var(--texto); font-size: 0.95rem; }
 .marca-pie:hover { text-decoration: none; }
+/* Logo del footer: centrado y ampliado al espacio disponible */
+.logo-footer { width: 128px; height: 128px; margin: 0 auto; }
 .pie-credito { margin: 0.35rem 0 0; color: var(--texto); font-weight: 600; letter-spacing: 0.02em; font-size: 0.85rem; }
 .pie-meta { margin: 0; color: var(--texto-suave); font-size: 0.78rem; }
 .pie a { color: var(--texto-suave); text-decoration: underline; text-underline-offset: 3px; }
