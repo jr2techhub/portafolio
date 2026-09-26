@@ -14,19 +14,17 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 concurrency:
   group: pages
   cancel-in-progress: true
 
 jobs:
-  construir:
+  construir-y-publicar:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout del repositorio
+      - name: Checkout del repositorio (rama master)
         uses: actions/checkout@v4
 
       - name: Configurar Python
@@ -40,23 +38,11 @@ jobs:
       - name: Generar sitio estático en _site/
         run: python scripts/build.py
 
-      - name: Configurar GitHub Pages
-        uses: actions/configure-pages@v5
+      - name: Publicar en la rama gh-pages (GitHub Pages)
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          enablement: true
-
-      - name: Subir artefacto del sitio
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: _site
-
-  publicar:
-    needs: construir
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.salida.outputs.page_url }}
-    steps:
-      - name: Publicar en GitHub Pages
-        id: salida
-        uses: actions/deploy-pages@v4
+          branch: gh-pages
+          folder: _site
+          clean-exclude: |
+            .nojekyll
+          single-commit: true
