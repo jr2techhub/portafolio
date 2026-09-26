@@ -34,7 +34,7 @@ _site/                  ← Salida generada (ignorada por git)
 
 Categorías disponibles: `web`, `datos`, `mobile`, `ia`, `devops`, `otros`.
 
-2. Haz push a la rama `main`. El workflow se dispara solo, valida el JSON,
+2. Haz push a la rama `master`. El workflow se dispara solo, valida el JSON,
    genera `_site/` y lo publica en GitHub Pages.
 
 ## Construir localmente

@@ -1,10 +1,10 @@
 name: Publicar portafolio en GitHub Pages
 
-# Se ejecuta al hacer push a main (cuando agregues nuevos proyectos
+# Se ejecuta al hacer push a master (cuando agregues nuevos proyectos
 # a data/projects.json) y también permite ejecutarlo manualmente.
 on:
   push:
-    branches: [main]
+    branches: [master]
     paths:
       - "data/**"
       - "templates/**"
