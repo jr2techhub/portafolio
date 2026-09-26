@@ -120,6 +120,35 @@ def tarjeta_proyecto(p):
         </article>"""
 
 
+ICONOS_CATEGORIA = {
+    "web": '<path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM2 8h12M8 2c2 1.8 3 3.8 3 6s-1 4.2-3 6c-2-1.8-3-3.8-3-6s1-4.2 3-6z" fill="none" stroke="currentColor" stroke-width="1.2"/>',
+    "frontend": '<path d="M5.5 5 2 8l3.5 3M10.5 5 14 8l-3.5 3M9 4 7 12" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>',
+    "backend": '<rect x="3" y="3" width="10" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M6 6.5h4M6 9.5h2.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>',
+    "datos": '<ellipse cx="8" cy="4.5" rx="4.5" ry="1.8" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M3.5 4.5v7c0 1 2 1.8 4.5 1.8s4.5-.8 4.5-1.8v-7M3.5 8c0 1 2 1.8 4.5 1.8s4.5-.8 4.5-1.8" fill="none" stroke="currentColor" stroke-width="1.2"/>',
+    "integraciones": '<path d="M6 10 4.2 11.8a2.5 2.5 0 0 1-3.5-3.5L4 5 2.8 3.8 5.8 3l2 2-1.5 1.5M10 6l1.8-1.8a2.5 2.5 0 0 1 3.5 3.5L12 11l1.2 1.2-3 .8-2-2 1.5-1.5" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/>',
+    "mobile": '<rect x="5" y="2" width="6" height="12" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="8" cy="11.8" r=".7" fill="currentColor"/>',
+    "ia": '<circle cx="4" cy="4" r="1.4" fill="currentColor"/><circle cx="12" cy="4" r="1.4" fill="currentColor"/><circle cx="8" cy="11" r="1.6" fill="currentColor"/><path d="M5 5l2.4 4.5M11 5 8.6 9.5M5.4 4h5.2" stroke="currentColor" stroke-width="1.1"/>',
+    "devops": '<circle cx="8" cy="8" r="2.4" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M8 2.5v1.6M8 11.9v1.6M2.5 8h1.6M11.9 8h1.6M4.1 4.1l1.1 1.1M10.8 10.8l1.1 1.1M11.9 4.1l-1.1 1.1M5.2 10.8l-1.1 1.1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>',
+    "otros": '<rect x="2.5" y="2.5" width="11" height="11" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M6 8h4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>',
+}
+
+
+def slide_proyecto(p, i):
+    categoria = p.get("categoria", "otros")
+    icono = ICONOS_CATEGORIA.get(categoria, ICONOS_CATEGORIA["otros"])
+    tags = "".join(f'<span class="slide-tag">{e(t)}</span>' for t in (p.get("tecnologias") or [])[:3])
+    desc = e((p.get("descripcion") or "").strip())
+    if len(desc) > 150:
+        desc = desc[:150].rsplit(" ", 1)[0] + "…"
+    return f"""          <div class="slide{' activo' if i == 0 else ''}" role="group" aria-roledescription="diapositiva" aria-label="{i + 1} de {{TOTAL}}: {e(p['nombre'])}" style="--acento:{color_proyecto(p)}">
+            <div class="slide-icono"><svg viewBox="0 0 16 16" width="26" height="26" aria-hidden="true">{icono}</svg></div>
+            <h3 class="slide-nombre">{e(p['nombre'])}</h3>
+            <p class="slide-desc">{desc}</p>
+            <div class="slide-tags">{tags}</div>
+            <a class="slide-enlace" href="{e(p.get('url') or '#proyectos')}" target="_blank" rel="noopener">Ver en GitHub →</a>
+          </div>"""
+
+
 def construir():
     datos = leer_datos()
     perfil = datos.get("perfil", {})
@@ -133,6 +162,12 @@ def construir():
                                                  not p.get("fecha")), )
 
     tarjetas = "\n".join(tarjeta_proyecto(p) for p in proyectos)
+
+    # Slider alegórico: destacados primero, luego más recientes (máx. 6)
+    orden_slider = sorted(proyectos, key=lambda p: (not p.get("destacado"),), reverse=False)
+    slides_proyectos = orden_slider[:6]
+    slides = "\n".join(slide_proyecto(p, i).replace("{TOTAL}", str(len(slides_proyectos)))
+                       for i, p in enumerate(slides_proyectos)) if slides_proyectos else ""
 
     cats_presentes = [c for c in CATEGORIAS if any(p.get("categoria", "otros") == c for p in proyectos)]
     botones = '<button class="filtro activo" data-filtro="todas" aria-pressed="true">Todas</button>' + "".join(
@@ -178,6 +213,7 @@ def construir():
         .replace("{{AVATAR}}", e(f"https://github.com/{perfil.get('usuario_github','')}.png?size=200"))
         .replace("{{CATEGORIAS}}", botones)
         .replace("{{TARJETAS}}", tarjetas)
+        .replace("{{SLIDES}}", slides)
         .replace("{{ANIO}}", str(date.today().year))
         .replace("{{CANTIDAD}}", str(len(proyectos)))
         .replace("{{CSS_URL}}", e(refs.get("styles.css", "styles.css")))

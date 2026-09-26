@@ -173,3 +173,66 @@
     if (PROYECTOS.some((p) => p.id === id)) abrirDetalle(id);
   }
 })();
+
+// Slider alegórico de proyectos en el hero (sin dependencias).
+(() => {
+  const slider = document.getElementById("slider-proyectos");
+  if (!slider) return;
+  const slides = Array.from(slider.querySelectorAll(".slide"));
+  if (slides.length < 2) return;
+
+  const prev = document.getElementById("slider-prev");
+  const next = document.getElementById("slider-next");
+  const puntosCont = document.getElementById("slider-puntos");
+
+  let indice = 0;
+  let timer = null;
+  const INTERVALO = 5000;
+  const reducir = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const puntos = slides.map((_, i) => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "slider-punto" + (i === 0 ? " activo" : "");
+    b.setAttribute("role", "tab");
+    b.setAttribute("aria-label", `Ir al proyecto ${i + 1}`);
+    b.setAttribute("aria-selected", i === 0 ? "true" : "false");
+    b.addEventListener("click", () => { ir(i); reiniciar(); });
+    puntosCont.appendChild(b);
+    return b;
+  });
+
+  function ir(nuevo) {
+    indice = (nuevo + slides.length) % slides.length;
+    slides.forEach((s, i) => s.classList.toggle("activo", i === indice));
+    puntos.forEach((p, i) => {
+      p.classList.toggle("activo", i === indice);
+      p.setAttribute("aria-selected", i === indice ? "true" : "false");
+    });
+  }
+
+  function reiniciar() {
+    if (reducir) return;
+    clearInterval(timer);
+    timer = setInterval(() => ir(indice + 1), INTERVALO);
+  }
+
+  prev?.addEventListener("click", () => { ir(indice - 1); reiniciar(); });
+  next?.addEventListener("click", () => { ir(indice + 1); reiniciar(); });
+  slider.addEventListener("mouseenter", () => clearInterval(timer));
+  slider.addEventListener("mouseleave", reiniciar);
+  slider.addEventListener("focusin", () => clearInterval(timer));
+  slider.addEventListener("focusout", reiniciar);
+  slider.addEventListener("keydown", (ev) => {
+    if (ev.key === "ArrowLeft") { ir(indice - 1); reiniciar(); }
+    if (ev.key === "ArrowRight") { ir(indice + 1); reiniciar(); }
+  });
+
+  // Pausar cuando la pestaña no está visible
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) clearInterval(timer);
+    else reiniciar();
+  });
+
+  reiniciar();
+})();

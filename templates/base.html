@@ -57,6 +57,15 @@
           <span class="chip chip-estatico">{{CANTIDAD}} proyectos publicados</span>
         </nav>
       </div>
+      <!-- Slider alegórico de proyectos -->
+      <section class="slider" id="slider-proyectos" aria-roledescription="carrusel" aria-label="Proyectos destacados">
+        <div class="slider-pista" id="slider-pista">
+{{SLIDES}}
+        </div>
+        <button class="slider-flecha slider-anterior" id="slider-prev" type="button" aria-label="Proyecto anterior">&#8249;</button>
+        <button class="slider-flecha slider-siguiente" id="slider-next" type="button" aria-label="Proyecto siguiente">&#8250;</button>
+        <div class="slider-puntos" id="slider-puntos" role="tablist" aria-label="Seleccionar proyecto"></div>
+      </section>
     </div>
   </header>
 
@@ -83,7 +92,6 @@
         </svg>
         <span class="nombre-marca">JR<sup>2</sup>&nbsp;Tech</span>
       </a>
-      <p class="pie-credito">Junior Rico Reyes · Portafolio profesional</p>
       <p class="pie-meta">© {{ANIO}} · Generado automáticamente con GitHub Actions · Publicado en GitHub Pages · <a href="https://github.com/{{USUARIO_GITHUB}}/portafolio">Fuente</a></p>
     </div>
   </footer>
