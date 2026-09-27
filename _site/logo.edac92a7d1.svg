@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 168 48" role="img" aria-label="JR² Tech — Junior Rico Reyes">
+  <title>JR² Tech</title>
+  <defs>
+    <linearGradient id="lg-jr2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4a7dff"/>
+      <stop offset="1" stop-color="#e0342c"/>
+    </linearGradient>
+  </defs>
+  <!-- Placa del isotipo -->
+  <rect x="1.5" y="1.5" width="45" height="45" rx="13" fill="#0b101c"/>
+  <rect x="1.5" y="1.5" width="45" height="45" rx="13" fill="none" stroke="url(#lg-jr2)" stroke-opacity="0.5" stroke-width="1.4"/>
+  <!-- J azul · R rojo · exponente 2 blanco (bloque JR² ópticamente centrado) -->
+  <g font-family="'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-weight="800" text-rendering="geometricPrecision">
+    <text x="11.94" y="30.00" font-size="19" fill="#4a7dff">J</text>
+    <text x="16.49" y="30.00" font-size="19" fill="#e0342c">R</text>
+    <text x="30.81" y="24.00" font-size="11" fill="#eef2f8">2</text>
+  </g>
+  <!-- Palabra marca -->
+  <text x="60" y="29" font-family="'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="17" font-weight="700" letter-spacing="-0.2" fill="#dbe1ea">JR<tspan dy="-6" font-size="10" fill="#eef2f8">2</tspan><tspan dy="6"> Tech</tspan></text>
+  <text x="60" y="41" font-family="'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="7.5" font-weight="500" letter-spacing="2.2" fill="#8b94a7">JUNIOR RICO REYES</text>
+</svg>

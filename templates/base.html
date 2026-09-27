@@ -67,11 +67,12 @@
         <p class="rol">{{TITULO_PROFESIONAL}}</p>
         <p class="subtitulo">{{RESUMEN}}</p>
         <nav class="links" aria-label="Enlaces de contacto">
-          <a class="chip chip-primario" href="https://github.com/{{USUARIO_GITHUB}}" target="_blank" rel="noopener me">
+          <a class="chip chip-primario" href="#proyectos">Ver proyectos</a>
+          <a class="chip" href="mailto:{{EMAIL}}">Hablemos</a>
+          <a class="chip" href="https://github.com/{{USUARIO_GITHUB}}" target="_blank" rel="noopener me">
             <svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.62-.01 1.05.58 1.2.82.72 1.2 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
             GitHub
           </a>
-          <a class="chip" href="mailto:{{EMAIL}}">Email</a>
           <span class="chip chip-estatico">{{CANTIDAD}} proyectos publicados</span>
         </nav>
       </div>
@@ -88,6 +89,39 @@
   </header>
 
   <main id="contenido">
+    <section class="seccion about" aria-labelledby="titulo-sobre-mi">
+      <div class="about-grid">
+        <div class="about-copy">
+          <p class="eyebrow">Sobre mí</p>
+          <h2 id="titulo-sobre-mi">Creo software que reduce fricción operativa y acelera la toma de decisiones.</h2>
+          <p>
+            Trabajo en backend, cloud, automatización y análisis de datos para construir plataformas que no solo funcionan,
+            sino que ayudan a las empresas a operar mejor, escalar más rápido y tomar decisiones con más confianza.
+          </p>
+          <div class="about-points">
+            <span>Backend & APIs</span>
+            <span>Cloud & DevOps</span>
+            <span>Automatización</span>
+            <span>Data & Integraciones</span>
+          </div>
+        </div>
+        <div class="about-panel" aria-label="Resumen profesional">
+          <div class="metric">
+            <strong>+5</strong>
+            <span>años construyendo software</span>
+          </div>
+          <div class="metric">
+            <strong>20+</strong>
+            <span>proyectos y soluciones</span>
+          </div>
+          <div class="metric">
+            <strong>100%</strong>
+            <span>orientado a negocio y resultados</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="proyectos" class="seccion" aria-labelledby="titulo-proyectos">
       <div class="cabecera-seccion">
         <h2 id="titulo-proyectos">Proyectos</h2>
