@@ -8,6 +8,7 @@
   <meta name="theme-color" content="#0b1020" />
   <link rel="canonical" href="{{URL_BASE}}" />
   <link rel="icon" type="image/svg+xml" href="{{FAVICON}}" />
+  <meta name="robots" content="noindex, nofollow" />
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="{{TITULO}} · Portafolio" />
@@ -27,17 +28,26 @@
   <div class="barra">
     <div class="barra-inner">
       <a class="marca" href="{{URL_BASE}}" aria-label="JR² Tech Portafolio — inicio">
-        <svg class="logo-marca logo-header" viewBox="0 0 48 48" aria-hidden="true">
+        <svg class="logo-marca logo-header" viewBox="0 0 48 48" role="img" aria-label="JR²">
+          <title>JR²</title>
           <rect x="1" y="1" width="46" height="46" rx="12" fill="#05070d" stroke="rgba(255,255,255,0.16)" stroke-width="1.5"/>
-          <text x="22" y="32" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" letter-spacing="-0.5" fill="currentColor" text-anchor="middle">JR<tspan dy="-7" font-size="12">2</tspan></text>
+          <text x="15" y="32" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" fill="#2f6fed" text-anchor="middle">J</text>
+          <text x="29" y="32" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" fill="#e0342c" text-anchor="middle">R</text>
+          <text x="38" y="24" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="700" fill="#ffffff">2</text>
         </svg>
         <span class="nombre-marca">Tech Portafolio</span>
       </a>
-      <nav aria-label="Navegación principal">
-        <a href="#proyectos">Proyectos</a>
-        <a href="https://github.com/{{USUARIO_GITHUB}}" target="_blank" rel="noopener me">GitHub</a>
-        <a href="mailto:{{EMAIL}}">Contacto</a>
-      </nav>
+      <div class="barra-acciones">
+        <nav aria-label="Navegación principal">
+          <a href="#proyectos" data-es="Proyectos" data-en="Projects">Proyectos</a>
+          <a href="https://github.com/{{USUARIO_GITHUB}}" target="_blank" rel="noopener me">GitHub</a>
+          <a href="mailto:{{EMAIL}}" data-es="Contacto" data-en="Contact">Contacto</a>
+        </nav>
+        <div class="selector-idioma" id="selector-idioma" role="group" aria-label="Seleccionar idioma / Select language">
+          <button type="button" class="idioma-btn activo" data-idioma="es" aria-pressed="true" title="Español">ES</button>
+          <button type="button" class="idioma-btn" data-idioma="en" aria-pressed="false" title="English">EN</button>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -86,12 +96,15 @@
   <footer class="pie">
     <div class="pie-inner">
       <a class="marca marca-pie" href="{{URL_BASE}}" aria-label="JR² Tech — inicio">
-        <svg class="logo-marca logo-footer" viewBox="0 0 48 48" aria-hidden="true">
+        <svg class="logo-marca logo-footer" viewBox="0 0 48 48" role="img" aria-label="JR²">
+          <title>JR²</title>
           <rect x="1" y="1" width="46" height="46" rx="12" fill="#05070d" stroke="rgba(255,255,255,0.16)" stroke-width="1.5"/>
-          <text x="22" y="32" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" letter-spacing="-0.5" fill="currentColor" text-anchor="middle">JR<tspan dy="-7" font-size="12">2</tspan></text>
+          <text x="15" y="32" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" fill="#2f6fed" text-anchor="middle">J</text>
+          <text x="29" y="32" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" fill="#e0342c" text-anchor="middle">R</text>
+          <text x="38" y="24" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="700" fill="#ffffff">2</text>
         </svg>
       </a>
-      <p class="pie-meta">© {{ANIO}} · Generado automáticamente con GitHub Actions · Publicado en GitHub Pages · <a href="https://github.com/{{USUARIO_GITHUB}}/portafolio">Fuente</a></p>
+      <p class="pie-meta">© {{ANIO}}</p>
     </div>
   </footer>
 

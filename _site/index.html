@@ -7,7 +7,8 @@
   <meta name="description" content="Construyo plataformas SaaS, integraciones de datos y herramientas de automatización. Este portafolio se sincroniza automáticamente con mis repositorios de GitHub y se publica en GitHub Pages." />
   <meta name="theme-color" content="#0b1020" />
   <link rel="canonical" href="https://jr2techhub.github.io/portafolio/" />
-  <link rel="icon" type="image/svg+xml" href="favicon.d8f23c7b97.svg" />
+  <link rel="icon" type="image/svg+xml" href="favicon.43ef6f259d.svg" />
+  <meta name="robots" content="noindex, nofollow" />
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="JR2 TechHub · Portafolio" />
@@ -18,7 +19,7 @@
   <meta name="twitter:title" content="JR2 TechHub · Portafolio" />
   <meta name="twitter:description" content="Construyo plataformas SaaS, integraciones de datos y herramientas de automatización. Este portafolio se sincroniza automáticamente con mis repositorios de GitHub y se publica en GitHub Pages." />
   <link rel="preconnect" href="https://github.com" />
-  <link rel="stylesheet" href="styles.387e42dd49.css" />
+  <link rel="stylesheet" href="styles.4adc104ec1.css" />
   <script>document.documentElement.classList.add("js")</script>
 </head>
 <body>
@@ -27,17 +28,26 @@
   <div class="barra">
     <div class="barra-inner">
       <a class="marca" href="https://jr2techhub.github.io/portafolio/" aria-label="JR² Tech Portafolio — inicio">
-        <svg class="logo-marca logo-header" viewBox="0 0 48 48" aria-hidden="true">
+        <svg class="logo-marca logo-header" viewBox="0 0 48 48" role="img" aria-label="JR²">
+          <title>JR²</title>
           <rect x="1" y="1" width="46" height="46" rx="12" fill="#05070d" stroke="rgba(255,255,255,0.16)" stroke-width="1.5"/>
-          <text x="22" y="32" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" letter-spacing="-0.5" fill="currentColor" text-anchor="middle">JR<tspan dy="-7" font-size="12">2</tspan></text>
+          <text x="15" y="32" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" fill="#2f6fed" text-anchor="middle">J</text>
+          <text x="29" y="32" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" fill="#e0342c" text-anchor="middle">R</text>
+          <text x="38" y="24" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="700" fill="#ffffff">2</text>
         </svg>
         <span class="nombre-marca">Tech Portafolio</span>
       </a>
-      <nav aria-label="Navegación principal">
-        <a href="#proyectos">Proyectos</a>
-        <a href="https://github.com/jr2techhub" target="_blank" rel="noopener me">GitHub</a>
-        <a href="mailto:jr2techhub@users.noreply.github.com">Contacto</a>
-      </nav>
+      <div class="barra-acciones">
+        <nav aria-label="Navegación principal">
+          <a href="#proyectos" data-es="Proyectos" data-en="Projects">Proyectos</a>
+          <a href="https://github.com/jr2techhub" target="_blank" rel="noopener me">GitHub</a>
+          <a href="mailto:jr2techhub@users.noreply.github.com" data-es="Contacto" data-en="Contact">Contacto</a>
+        </nav>
+        <div class="selector-idioma" id="selector-idioma" role="group" aria-label="Seleccionar idioma / Select language">
+          <button type="button" class="idioma-btn activo" data-idioma="es" aria-pressed="true" title="Español">ES</button>
+          <button type="button" class="idioma-btn" data-idioma="en" aria-pressed="false" title="English">EN</button>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -249,17 +259,20 @@
   <footer class="pie">
     <div class="pie-inner">
       <a class="marca marca-pie" href="https://jr2techhub.github.io/portafolio/" aria-label="JR² Tech — inicio">
-        <svg class="logo-marca logo-footer" viewBox="0 0 48 48" aria-hidden="true">
+        <svg class="logo-marca logo-footer" viewBox="0 0 48 48" role="img" aria-label="JR²">
+          <title>JR²</title>
           <rect x="1" y="1" width="46" height="46" rx="12" fill="#05070d" stroke="rgba(255,255,255,0.16)" stroke-width="1.5"/>
-          <text x="22" y="32" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" letter-spacing="-0.5" fill="currentColor" text-anchor="middle">JR<tspan dy="-7" font-size="12">2</tspan></text>
+          <text x="15" y="32" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" fill="#2f6fed" text-anchor="middle">J</text>
+          <text x="29" y="32" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" fill="#e0342c" text-anchor="middle">R</text>
+          <text x="38" y="24" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="700" fill="#ffffff">2</text>
         </svg>
       </a>
-      <p class="pie-meta">© 2026 · Generado automáticamente con GitHub Actions · Publicado en GitHub Pages · <a href="https://github.com/jr2techhub/portafolio">Fuente</a></p>
+      <p class="pie-meta">© 2026</p>
     </div>
   </footer>
 
     <script id="datos-portafolio" type="application/json">[{"id": "tropicfeel-netsuite-integration", "nombre": "Tropicfeel NetSuite Integration", "descripcion": "Integración E-commerce ↔ ERP: microservicio broker en Java/Spring que sincroniza ítems, órdenes de compra y envíos inbound entre NetSuite, Everstox/Deliverr y marketplaces mediante flujos de eventos y colas DLQ.", "repo": "jr2techhub/tropicfeel-netsuite-integration", "url": "https://github.com/jr2techhub/tropicfeel-netsuite-integration", "demo": null, "tecnologias": ["Java", "Spring Boot", "NetSuite", "Everstox API", "Jenkins", "Docker"], "categoria": "integraciones", "destacado": true, "fecha": "2026-08-27"}, {"id": "market-scraper-app", "nombre": "market-scraper-app", "descripcion": "Aplicación web del ecosistema MarketScraper: dashboard interactivo construido con React 19 + Vite, gráficos con Recharts, i18n con i18next y diseño modular en SCSS. Publicada en GitHub Pages con despliegue automático.", "repo": "jr2techhub/market-scraper-app", "url": "https://github.com/jr2techhub/market-scraper-app", "demo": "https://jr2techhub.github.io/market-scraper-app/", "tecnologias": ["React 19", "Vite", "Recharts", "i18next", "SCSS", "GitHub Pages"], "categoria": "frontend", "destacado": true, "fecha": "2026-09-03"}, {"id": "erp-lite", "nombre": "ERP-Lite", "descripcion": "ERP modular multi-tenant (SaaS) para pequeños emprendimientos construido con .NET 10 y Clean Architecture. Frontend Blazor WASM, PostgreSQL vía EF Core, pagos con Stripe e integración de IA con Google Gemini (LightERP.AI).", "repo": "jr2techhub/ERP-Lite", "url": "https://github.com/jr2techhub/ERP-Lite", "demo": null, "tecnologias": ["C#", ".NET 10", "Blazor WASM", "PostgreSQL", "EF Core", "Clean Architecture", "Stripe", "Google Gemini"], "categoria": "backend", "destacado": true, "fecha": "2026-09-10"}, {"id": "marketscrapersolution", "nombre": "MarketScraperSolution", "descripcion": "Plataforma de web scraping y procesamiento de datos en .NET para recopilar y analizar anuncios clasificados de múltiples marketplaces. Incluye un Dynamic Market Intelligence Agent con patrones de scraping configurables vía JSON (no-code).", "repo": "jr2techhub/MarketScraperSolution", "url": "https://github.com/jr2techhub/MarketScraperSolution", "demo": null, "tecnologias": ["C#", ".NET", "Web Scraping", "Pattern Engine", "JSON Config"], "categoria": "datos", "destacado": true, "fecha": "2026-09-18"}, {"id": "hublanding", "nombre": "Hublanding", "descripcion": "Landing page del Hub tecnológico.", "repo": "jr2techhub/Hublanding", "url": "https://github.com/jr2techhub/Hublanding", "demo": null, "tecnologias": ["HTML", "CSS"], "categoria": "frontend", "destacado": false, "fecha": "2026-08-10"}, {"id": "techhub-sso", "nombre": "TechHub-SSO", "descripcion": "Servidor de identidad centralizado (Single Sign-On) para el ecosistema TechHub basado en OpenIddict y .NET 10. OAuth2 / OpenID Connect con flujo Authorization Code + PKCE, gestión multi-tenant y trials automáticos.", "repo": "jr2techhub/TechHub-SSO", "url": "https://github.com/jr2techhub/TechHub-SSO", "demo": null, "tecnologias": ["C#", ".NET 10", "OpenIddict", "OAuth2", "OpenID Connect", "PKCE"], "categoria": "backend", "destacado": false, "fecha": "2026-09-10"}, {"id": "portafolio", "nombre": "Portafolio (este sitio)", "descripcion": "Sitio del portafolio generado estáticamente con Python y publicado en GitHub Pages. Se auto-sincroniza con la API de GitHub: cada nuevo repo aparece automáticamente al ejecutarse el workflow.", "repo": "jr2techhub/portafolio", "url": "https://github.com/jr2techhub/portafolio", "demo": "https://jr2techhub.github.io/portafolio/", "tecnologias": ["Python", "GitHub Actions", "GitHub Pages", "REST API"], "categoria": "web", "destacado": false, "fecha": "2026-09-26"}]</script>
-  <script src="app.e83e5af3a5.js" defer></script>
+  <script src="app.1139a2b61e.js" defer></script>
 
   <!-- Ficha de detalle (se rellena dinámicamente al hacer clic en una tarjeta) -->
   <div class="modal" id="modal-detalle" role="dialog" aria-modal="true" aria-labelledby="detalle-nombre" hidden>

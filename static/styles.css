@@ -247,6 +247,25 @@ a:hover { text-decoration: underline; }
 .stat{background:rgba(124,147,214,.06);border:1px solid rgba(124,147,214,.14);border-radius:10px;padding:.6rem .8rem;text-align:center}
 .stat b{display:block;font-size:1.15rem;color:#dbe1ea}
 .stat span{font-size:.74rem;color:#8b94a7}
+
+/* ===== Aviso de repositorio privado ===== */
+.aviso-privado{display:flex;flex-direction:column;align-items:center;text-align:center;gap:.5rem;
+  background:rgba(224,52,44,.06);border:1px solid rgba(224,52,44,.28);border-radius:12px;padding:1.1rem 1rem;margin-bottom:.25rem;color:var(--texto)}
+.aviso-privado svg{color:#e0342c}
+.aviso-privado strong{font-size:.98rem}
+.aviso-privado p{margin:0;font-size:.85rem;color:var(--texto-suave);max-width:42ch}
+.btn-acceso{background:#2f6fed;border-color:#2f6fed;color:#fff}
+.btn-acceso:hover{box-shadow:0 4px 16px rgba(47,111,237,.45);color:#fff}
+
+/* ===== Selector de idioma EN/ES ===== */
+.barra-acciones{display:flex;align-items:center;gap:1rem}
+.selector-idioma{display:inline-flex;border:1px solid var(--borde);border-radius:999px;overflow:hidden;background:var(--panel)}
+.idioma-btn{appearance:none;border:0;background:transparent;color:var(--texto-suave);
+  font:inherit;font-size:.76rem;font-weight:700;letter-spacing:.05em;padding:.3rem .65rem;cursor:pointer;transition:background var(--transicion),color var(--transicion)}
+.idioma-btn:hover{color:var(--texto)}
+.idioma-btn.activo{background:#2f6fed;color:#fff}
+.idioma-btn + .idioma-btn{border-left:1px solid var(--borde)}
+@media (max-width:640px){.barra nav{gap:.9rem}.selector-idioma{margin-left:auto}}
 .detalle-acciones{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.5rem}
 html.bloqueo{overflow:hidden}
 @media (prefers-reduced-motion: reduce){.modal-panel{animation:none}}
