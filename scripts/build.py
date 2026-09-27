@@ -73,6 +73,103 @@ def color_proyecto(p):
     return "#6366f1"
 
 
+# Paleta por categoría para las imágenes alegóricas del slider
+PALETAS_CATEGORIA = {
+    "web": ("#0c4a6e", "#38bdf8"),
+    "frontend": ("#4c1d95", "#a78bfa"),
+    "backend": ("#14532d", "#4ade80"),
+    "datos": ("#78350f", "#fbbf24"),
+    "integraciones": ("#831843", "#f472b6"),
+    "mobile": ("#1e3a8a", "#60a5fa"),
+    "ia": ("#581c87", "#e879f9"),
+    "devops": ("#134e4a", "#2dd4bf"),
+    "otros": ("#1e293b", "#94a3b8"),
+}
+
+# Glifos alegóricos por lenguaje/tecnología (viewBox 24x24, trazos simples)
+GLIFOS_TECH = {
+    "database": '<ellipse cx="12" cy="5.5" rx="7" ry="2.6" fill="none" stroke="{c}" stroke-width="1.4"/><path d="M5 5.5v13c0 1.5 3.1 2.6 7 2.6s7-1.1 7-2.6v-13M5 12c0 1.5 3.1 2.6 7 2.6s7-1.1 7-2.6" fill="none" stroke="{c}" stroke-width="1.4"/>',
+    "code": '<path d="M8.5 7.5 4 12l4.5 4.5M15.5 7.5 20 12l-4.5 4.5M13.6 5.4l-3.2 13.2" fill="none" stroke="{c}" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>',
+    "server": '<rect x="3.5" y="4.5" width="17" height="6.5" rx="1.6" fill="none" stroke="{c}" stroke-width="1.4"/><rect x="3.5" y="13" width="17" height="6.5" rx="1.6" fill="none" stroke="{c}" stroke-width="1.4"/><circle cx="7" cy="7.8" r=".9" fill="{c}"/><circle cx="7" cy="16.3" r=".9" fill="{c}"/><path d="M11 7.8h6M11 16.3h6" stroke="{c}" stroke-width="1.1" stroke-linecap="round"/>',
+    "cloud": '<path d="M7 18a4.2 4.2 0 1 1 .6-8.4A5.6 5.6 0 0 1 18 10.4 3.8 3.8 0 0 1 17.4 18Z" fill="none" stroke="{c}" stroke-width="1.4" stroke-linejoin="round"/>',
+    "graph": '<path d="M4 19V5M4 19h16" stroke="{c}" stroke-width="1.4" stroke-linecap="round"/><path d="M7 15.5 11 10l3 3 4.5-6.5" fill="none" stroke="{c}" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>',
+    "link": '<path d="M10 14a4.6 4.6 0 0 0 6.6 0l2.8-2.8a4.7 4.7 0 0 0-6.6-6.6L11.4 6M14 10a4.6 4.6 0 0 0-6.6 0L4.6 12.8a4.7 4.7 0 0 0 6.6 6.6L13 17.6" fill="none" stroke="{c}" stroke-width="1.5" stroke-linecap="round"/>',
+    "cpu": '<rect x="6.5" y="6.5" width="11" height="11" rx="2" fill="none" stroke="{c}" stroke-width="1.4"/><rect x="10" y="10" width="4" height="4" rx="1" fill="{c}"/><path d="M9.5 3.5v3M14.5 3.5v3M9.5 17.5v3M14.5 17.5v3M3.5 9.5h3M3.5 14.5h3M17.5 9.5h3M17.5 14.5h3" stroke="{c}" stroke-width="1.3" stroke-linecap="round"/>',
+    "lock": '<rect x="5.5" y="10.5" width="13" height="9" rx="2" fill="none" stroke="{c}" stroke-width="1.4"/><path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5" fill="none" stroke="{c}" stroke-width="1.4"/><circle cx="12" cy="15" r="1.5" fill="{c}"/>',
+    "globe": '<circle cx="12" cy="12" r="8" fill="none" stroke="{c}" stroke-width="1.4"/><path d="M4 12h16M12 4c2.4 2.2 3.6 4.9 3.6 8s-1.2 5.8-3.6 8c-2.4-2.2-3.6-4.9-3.6-8S9.6 6.2 12 4z" fill="none" stroke="{c}" stroke-width="1.2"/>',
+    "gear": '<circle cx="12" cy="12" r="3.1" fill="none" stroke="{c}" stroke-width="1.5"/><path d="M12 3v2.8M12 18.2V21M3 12h2.8M18.2 12H21M5.6 5.6l2 2M16.4 16.4l2 2M18.4 5.6l-2 2M7.6 16.4l-2 2" stroke="{c}" stroke-width="1.5" stroke-linecap="round"/>',
+    "spider": '<circle cx="12" cy="12" r="2.2" fill="{c}"/><path d="M12 3.5v6.3M12 14.2v6.3M3.5 12h6.3M14.2 12h6.3M6 6l4.4 4.4M13.6 13.6 18 18M18 6l-4.4 4.4M10.4 13.6 6 18" stroke="{c}" stroke-width="1.3" stroke-linecap="round"/>',
+    "page": '<path d="M7 3.5h7l4 4V20a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 7 20Z" fill="none" stroke="{c}" stroke-width="1.4"/><path d="M14 3.5V8h4.3M9.5 12.5h6M9.5 16h6" fill="none" stroke="{c}" stroke-width="1.2" stroke-linecap="round"/>',
+    "atom": '<circle cx="12" cy="12" r="1.8" fill="{c}"/><ellipse cx="12" cy="12" rx="9" ry="3.8" fill="none" stroke="{c}" stroke-width="1.2"/><ellipse cx="12" cy="12" rx="9" ry="3.8" fill="none" stroke="{c}" stroke-width="1.2" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9" ry="3.8" fill="none" stroke="{c}" stroke-width="1.2" transform="rotate(120 12 12)"/>',
+    "star": '<path d="m12 3.6 2.5 5.3 5.8.7-4.3 4 1.2 5.8L12 16.6l-5.2 2.8L8 13.6l-4.3-4 5.8-.7Z" fill="none" stroke="{c}" stroke-width="1.4" stroke-linejoin="round"/>',
+    "layers": '<path d="m12 3.5 8.5 4.3L12 12.1 3.5 7.8Z" fill="none" stroke="{c}" stroke-width="1.4" stroke-linejoin="round"/><path d="m3.5 12.4 8.5 4.3 8.5-4.3M3.5 16.6l8.5 4.3 8.5-4.3" fill="none" stroke="{c}" stroke-width="1.4" stroke-linejoin="round"/>',
+    "rocket": '<path d="M12 2.8c3.2 2.4 4.8 5.6 4.8 9.2 0 1.6-.4 3.2-1.2 4.6H8.4c-.8-1.4-1.2-3-1.2-4.6 0-3.6 1.6-6.8 4.8-9.2Z" fill="none" stroke="{c}" stroke-width="1.4"/><circle cx="12" cy="9.5" r="1.8" fill="none" stroke="{c}" stroke-width="1.3"/><path d="M8.4 16.6 6 21l3.6-1.6M15.6 16.6 18 21l-3.6-1.6" fill="none" stroke="{c}" stroke-width="1.3" stroke-linejoin="round"/>',
+}
+
+_CLAVE_GIFO = [
+    (("postgres", "pgsql", "sql", "database", "db", "ef core"), "database"),
+    (("scraping", "scraper", "spider", "crawl"), "spider"),
+    (("react", "blazor", "vue", "angular", "wasm", "frontend", "scss", "html", "css"), "code"),
+    (("oauth", "openid", "sso", "pkce", "openiddict", "auth", "seguridad", "stripe", "pago"), "lock"),
+    (("spring", "java", ".net", "backend", "microservicio", "api rest", "node"), "server"),
+    (("docker", "kubernetes", "k8s", "aws", "azure", "gcp", "cloud"), "cloud"),
+    (("action", "workflow", "jenkins", "devops", "ci/cd", "deploy", "pages"), "gear"),
+    (("gemini", "ia ", " ia", "inteligencia", "ml", "gpt", "openai"), "atom"),
+    (("netsuite", "everstox", "deliverr", "erp", "integracion", "dlq", "cola"), "link"),
+    (("recharts", "datos", "analitica", "analítica", "pattern engine", "json"), "graph"),
+    (("python",), "rocket"),
+    (("landing", "marketing"), "globe"),
+    (("typescript", "javascript"), "layers"),
+]
+
+
+def glifo_proyecto(p):
+    """Elige el glifo alegórico según tecnologías/categoría del proyecto."""
+    texto = " ".join(
+        [t.lower() for t in p.get("tecnologias", [])]
+        + [p.get("categoria", "").lower(), p.get("nombre", "").lower()]
+    )
+    for claves, glifo in _CLAVE_GIFO:
+        if any(k in texto for k in claves):
+            return glifo
+    return "star"
+
+
+def imagen_slide(p):
+    """Genera una imagen SVG alegórica del proyecto (fondo del slide)."""
+    cat = p.get("categoria", "otros")
+    oscuro, vivo = PALETAS_CATEGORIA.get(cat, PALETAS_CATEGORIA["otros"])
+    nombre = re.sub(r"\s*\(.*?\)\s*", "", str(p.get("nombre", ""))).strip().upper()
+    iniciales = "".join(w[0] for w in nombre.split()[:2]) or "JS"
+    glifo = GLIFOS_TECH[glifo_proyecto(p)].format(c=vivo)
+    svg = f"""<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 500' preserveAspectRatio='xMidYMid slice'>
+  <defs>
+    <linearGradient id='g' x1='0' y1='0' x2='1' y2='1'>
+      <stop offset='0' stop-color='{oscuro}'/>
+      <stop offset='1' stop-color='#05070d'/>
+    </linearGradient>
+    <pattern id='grid' width='40' height='40' patternUnits='userSpaceOnUse'>
+      <path d='M40 0H0v40' fill='none' stroke='rgba(255,255,255,0.055)' stroke-width='1'/>
+    </pattern>
+  </defs>
+  <rect width='800' height='500' fill='url(#g)'/>
+  <rect width='800' height='500' fill='url(#grid)'/>
+  <circle cx='705' cy='75' r='150' fill='{vivo}' opacity='.10'/>
+  <circle cx='95' cy='430' r='110' fill='{vivo}' opacity='.07'/>
+  <text x='32' y='118' font-family='Arial, Helvetica, sans-serif' font-size='150' font-weight='800' fill='{vivo}' opacity='.13'>{iniciales}</text>
+  <g transform='translate(560 105) scale(6.2)' opacity='.4'>{glifo}</g>
+  <path d='M0 470 C 150 425 300 500 450 462 S 720 415 800 452' fill='none' stroke='{vivo}' stroke-width='3' opacity='.35'/>
+  <path d='M0 492 C 180 455 340 512 500 482 S 740 445 800 476' fill='none' stroke='{vivo}' stroke-width='2' opacity='.2'/>
+</svg>"""
+    # Data URI (URL-encoded, segura dentro de style="...")
+    desde = "<>&\"' \n\t#"
+    hasta = ["%3C", "%3E", "%26", "%22", "%27", "%20", "", "", "%23"]
+    codificada = svg.replace("\n", "").replace("  ", "")
+    for ch in desde:
+        codificada = codificada.replace(ch, hasta[desde.index(ch)])
+    return "data:image/svg+xml," + codificada
+
+
 def formatear_fecha(iso):
     try:
         y, m, d = iso.split("-")
@@ -140,12 +237,16 @@ def slide_proyecto(p, i):
     desc = e((p.get("descripcion") or "").strip())
     if len(desc) > 150:
         desc = desc[:150].rsplit(" ", 1)[0] + "…"
-    return f"""          <div class="slide{' activo' if i == 0 else ''}" role="group" aria-roledescription="diapositiva" aria-label="{i + 1} de {{TOTAL}}: {e(p['nombre'])}" style="--acento:{color_proyecto(p)}">
-            <div class="slide-icono"><svg viewBox="0 0 16 16" width="26" height="26" aria-hidden="true">{icono}</svg></div>
-            <h3 class="slide-nombre">{e(p['nombre'])}</h3>
-            <p class="slide-desc">{desc}</p>
-            <div class="slide-tags">{tags}</div>
-            <a class="slide-enlace" href="{e(p.get('url') or '#proyectos')}" target="_blank" rel="noopener">Ver en GitHub →</a>
+    fondo = imagen_slide(p)
+    return f"""          <div class="slide{' activo' if i == 0 else ''}" role="group" aria-roledescription="diapositiva" aria-label="{i + 1} de {{TOTAL}}: {e(p['nombre'])}" style="--acento:{color_proyecto(p)}; --fondo-slide:url('{fondo}')">
+            <div class="slide-fondo" aria-hidden="true"></div>
+            <div class="slide-capa">
+              <div class="slide-icono"><svg viewBox="0 0 16 16" width="26" height="26" aria-hidden="true">{icono}</svg></div>
+              <h3 class="slide-nombre">{e(p['nombre'])}</h3>
+              <p class="slide-desc">{desc}</p>
+              <div class="slide-tags">{tags}</div>
+              <a class="slide-enlace" href="{e(p.get('url') or '#proyectos')}" target="_blank" rel="noopener">Ver en GitHub →</a>
+            </div>
           </div>"""
 
 
