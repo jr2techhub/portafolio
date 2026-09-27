@@ -30,12 +30,20 @@
       <a class="marca" href="{{URL_BASE}}" aria-label="JR² Tech Portafolio — inicio">
         <svg class="logo-marca logo-header" viewBox="0 0 48 48" role="img" aria-label="JR²">
           <title>JR²</title>
-          <rect x="1" y="1" width="46" height="46" rx="12" fill="#05070d" stroke="rgba(255,255,255,0.16)" stroke-width="1.5"/>
-          <text x="15" y="32" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" fill="#2f6fed" text-anchor="middle">J</text>
-          <text x="29" y="32" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" fill="#e0342c" text-anchor="middle">R</text>
-          <text x="38" y="24" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="700" fill="#ffffff">2</text>
+          <defs>
+            <linearGradient id="lg-h" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#4a7dff"/><stop offset="1" stop-color="#e0342c"/>
+            </linearGradient>
+          </defs>
+          <rect x="1.5" y="1.5" width="45" height="45" rx="13" fill="#0b101c"/>
+          <rect x="1.5" y="1.5" width="45" height="45" rx="13" fill="none" stroke="url(#lg-h)" stroke-opacity="0.5" stroke-width="1.4"/>
+          <g font-family="'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-weight="800" font-size="18" letter-spacing="-0.5" text-rendering="geometricPrecision">
+            <text x="16.4" y="31.6" text-anchor="middle" fill="#4a7dff">J</text>
+            <text x="27.6" y="31.6" text-anchor="middle" fill="#e0342c">R</text>
+            <text x="36" y="23" text-anchor="middle" font-size="10.5" letter-spacing="0" fill="#eef2f8">2</text>
+          </g>
         </svg>
-        <span class="nombre-marca">Tech Portafolio</span>
+        <span class="nombre-marca">JR<span class="marca-2"><sup>2</sup></span> <span class="marca-suave">Tech Portafolio</span></span>
       </a>
       <div class="barra-acciones">
         <nav aria-label="Navegación principal">
@@ -98,10 +106,18 @@
       <a class="marca marca-pie" href="{{URL_BASE}}" aria-label="JR² Tech — inicio">
         <svg class="logo-marca logo-footer" viewBox="0 0 48 48" role="img" aria-label="JR²">
           <title>JR²</title>
-          <rect x="1" y="1" width="46" height="46" rx="12" fill="#05070d" stroke="rgba(255,255,255,0.16)" stroke-width="1.5"/>
-          <text x="15" y="32" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" fill="#2f6fed" text-anchor="middle">J</text>
-          <text x="29" y="32" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" fill="#e0342c" text-anchor="middle">R</text>
-          <text x="38" y="24" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="700" fill="#ffffff">2</text>
+          <defs>
+            <linearGradient id="lg-f" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#4a7dff"/><stop offset="1" stop-color="#e0342c"/>
+            </linearGradient>
+          </defs>
+          <rect x="1.5" y="1.5" width="45" height="45" rx="13" fill="#0b101c"/>
+          <rect x="1.5" y="1.5" width="45" height="45" rx="13" fill="none" stroke="url(#lg-f)" stroke-opacity="0.5" stroke-width="1.4"/>
+          <g font-family="'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-weight="800" font-size="18" letter-spacing="-0.5" text-rendering="geometricPrecision">
+            <text x="16.4" y="31.6" text-anchor="middle" fill="#4a7dff">J</text>
+            <text x="27.6" y="31.6" text-anchor="middle" fill="#e0342c">R</text>
+            <text x="36" y="23" text-anchor="middle" font-size="10.5" letter-spacing="0" fill="#eef2f8">2</text>
+          </g>
         </svg>
       </a>
       <p class="pie-meta">© {{ANIO}}</p>
