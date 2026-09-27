@@ -159,6 +159,28 @@
     `;
   }
 
+  // Aviso amigable de "repositorio privado — solicita acceso". Se usa tanto si
+  // el dato ya viene marcado como privado (data/projects.json vía sync_repos.py)
+  // como si la API de GitHub responde 404/451 (GitHub oculta los repos privados
+  // tras un 404 para clientes no autenticados). En ningún caso se muestra el
+  // error 404 de GitHub: la ficha del proyecto SIEMPRE se abre con este aviso.
+  function mostrarAvisoPrivado() {
+    const seccion = contDetalle.querySelector("#detalle-stats");
+    if (!seccion) return;
+    const L = t();
+    seccion.querySelector("h4").textContent = L.privateTitle;
+    seccion.querySelector(".detalle-stats").innerHTML = `
+      <div class="aviso-privado" role="status">
+        <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M7 10.5V8a5 5 0 0 1 10 0v2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="4.5" y="10.5" width="15" height="10" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="15.5" r="1.7" fill="currentColor"/></svg>
+        <strong>${esc(L.privateTitle)}</strong>
+        <p>${esc(L.privateMsg)}</p>
+        <a class="btn btn-acceso" href="${esc(AccesoRepo)}" target="_blank" rel="noopener">${esc(L.requestAccess)}</a>
+      </div>`;
+    seccion.hidden = false;
+  }
+
+  let AccesoRepo = ""; // URL del repo abierto, para el botón «solicitar acceso»
+
   async function cargarStats(repo) {
     if (!repo) return;
     const seccion = contDetalle.querySelector("#detalle-stats");
@@ -167,26 +189,13 @@
       const r = await fetch(`https://api.github.com/repos/${repo}`, {
         headers: { Accept: "application/vnd.github+json" },
       });
-      // GitHub responde 404 para repos privados/inexistentes desde clientes no
-      // autenticados (y 451 por DMCA): mostramos un aviso amigable de "repositorio
-      // privado — solicita acceso" en lugar del error 404 de GitHub. Un 403 u otro
-      // fallo (p. ej. rate limit anónimo) NO debe mostrarse como repo privado.
       if (r.status === 404 || r.status === 451) {
-        const L = t();
-        const enlaceAcceso = `https://github.com/${repo}`;
-        cont.innerHTML = `
-          <div class="aviso-privado" role="status">
-            <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M7 10.5V8a5 5 0 0 1 10 0v2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="4.5" y="10.5" width="15" height="10" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="15.5" r="1.7" fill="currentColor"/></svg>
-            <strong>${esc(L.privateTitle)}</strong>
-            <p>${esc(L.privateMsg)}</p>
-            <a class="btn btn-acceso" href="${esc(enlaceAcceso)}" target="_blank" rel="noopener">${esc(L.requestAccess)}</a>
-          </div>`;
-        seccion.querySelector("h4").textContent = L.privateTitle;
-        seccion.hidden = false;
+        mostrarAvisoPrivado();
         return;
       }
       if (!r.ok) return; // rate limit u otro error: ocultar la sección, sin falso aviso
       const d = await r.json();
+      if (d && d.private) { mostrarAvisoPrivado(); return; } // defensa extra: nunca stats de un repo privado
       const L = t();
       const stats = [
         [L.stars, d.stargazers_count],
@@ -209,7 +218,14 @@
     modal.hidden = false;
     document.documentElement.classList.add("bloqueo");
     modal.querySelector(".modal-cerrar").focus();
-    cargarStats(p.repo);
+    AccesoRepo = p.url || (p.repo ? `https://github.com/${p.repo}` : "");
+    if (p.privado) {
+      // Marcado como privado por sync_repos.py: aviso inmediato, sin esperar
+      // a la API de GitHub (que respondería 404 y nunca debe verse).
+      mostrarAvisoPrivado();
+    } else {
+      cargarStats(p.repo);
+    }
     history.replaceState(null, "", "#" + encodeURIComponent(id));
   }
 
