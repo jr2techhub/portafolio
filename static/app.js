@@ -167,21 +167,25 @@
       const r = await fetch(`https://api.github.com/repos/${repo}`, {
         headers: { Accept: "application/vnd.github+json" },
       });
+      // GitHub responde 404 para repos privados/inexistentes desde clientes no
+      // autenticados (y 451 por DMCA): mostramos un aviso amigable de "repositorio
+      // privado — solicita acceso" en lugar del error 404 de GitHub. Un 403 u otro
+      // fallo (p. ej. rate limit anónimo) NO debe mostrarse como repo privado.
       if (r.status === 404 || r.status === 451) {
-        // Repositorio privado o no accesible: mostrar aviso en lugar del error 404 de GitHub.
         const L = t();
         const enlaceAcceso = `https://github.com/${repo}`;
         cont.innerHTML = `
-          <div class="aviso-privado">
+          <div class="aviso-privado" role="status">
             <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M7 10.5V8a5 5 0 0 1 10 0v2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="4.5" y="10.5" width="15" height="10" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="15.5" r="1.7" fill="currentColor"/></svg>
             <strong>${esc(L.privateTitle)}</strong>
             <p>${esc(L.privateMsg)}</p>
             <a class="btn btn-acceso" href="${esc(enlaceAcceso)}" target="_blank" rel="noopener">${esc(L.requestAccess)}</a>
           </div>`;
+        seccion.querySelector("h4").textContent = L.privateTitle;
         seccion.hidden = false;
         return;
       }
-      if (!r.ok) return;
+      if (!r.ok) return; // rate limit u otro error: ocultar la sección, sin falso aviso
       const d = await r.json();
       const L = t();
       const stats = [
