@@ -19,6 +19,7 @@ import argparse
 import json
 import os
 import sys
+import urllib.error
 import urllib.request
 from pathlib import Path
 
@@ -127,23 +128,51 @@ def sincronizar(dry_run=False):
     # candidato uno por uno antes de reportarlo como desaparecido.
     nombres_remotos = {r["full_name"].lower() for r in repos} | {f"{usuario.lower()}/portafolio"}
     candidatos = [k for k in existentes if k not in nombres_remotos]
-    huerfanos = []
+    huerfanos, privados = [], []
     for clave in candidatos:
         try:
             api_get(f"{API}/repos/{clave}", token)  # responde 200 si sigue existiendo
+        except urllib.error.HTTPError as err:
+            if err.code == 404:
+                # Sin token (o con un token sin permisos), GitHub responde 404
+                # también a los repositorios PRIVADOS del propio usuario: no son
+                # "desaparecidos", simplemente no son visibles. Se marcan como
+                # privados para que el sitio muestre el aviso de "solicitar acceso"
+                # en lugar de un error 404.
+                privados.append(clave)
+            else:
+                huerfanos.append(clave)
         except Exception:
             huerfanos.append(clave)
 
+    # Marcar/desmarcar la visibilidad privada en las entradas afectadas.
+    cambios_privados = []
+    for clave in privados:
+        p = existentes[clave]
+        if not p.get("privado"):
+            p["privado"] = True
+            cambios_privados.append(clave)
+    for r in repos:
+        clave = r["full_name"].lower()
+        p = existentes.get(clave)
+        if p and p.get("privado") and not r.get("private"):
+            del p["privado"]  # el repo volvió a ser público
+            cambios_privados.append(clave)
+
     if dry_run:
         print(f"[dry-run] nuevos: {nuevos or '-'} | actualizados: "
-              f"{[n for n, _ in actualizados] or '-'} | desaparecidos: {huerfanos or '-'}")
+              f"{[n for n, _ in actualizados] or '-'} | desaparecidos: {huerfanos or '-'}"
+              f" | privados: {privados or '-'}")
         return 0
 
-    if nuevos or actualizados:
+    if nuevos or actualizados or cambios_privados:
         ARCHIVO_DATOS.write_text(
             json.dumps(datos, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
         )
     print(f"Sincronización completa: {len(nuevos)} nuevos, {len(actualizados)} actualizados.")
+    if privados:
+        print(f"AVISO: repositorios marcados como privados (el sitio mostrará "
+              f"«solicitar acceso» en lugar del error 404): {privados}")
     if huerfanos:
         print(f"AVISO: entradas cuyo ya no existe en GitHub (revisar manualmente): {huerfanos}")
     # Salida legible para el paso "summary" del workflow
@@ -153,6 +182,7 @@ def sincronizar(dry_run=False):
             f.write("### Sincronización de repositorios\n")
             f.write(f"- Nuevos proyectos: {', '.join(nuevos) or '—'}\n")
             f.write(f"- Actualizados: {', '.join(n for n, _ in actualizados) or '—'}\n")
+            f.write(f"- Repos privados (aviso de solicitar acceso): {', '.join(privados) or '—'}\n")
             f.write(f"- Repos desaparecidos: {', '.join(huerfanos) or '—'}\n")
     return 0
 
