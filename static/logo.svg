@@ -1,6 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 48" role="img" aria-label="JR² Tech — Junior Rico Reyes">
   <rect x="1" y="1" width="46" height="46" rx="12" fill="#05070d" stroke="rgba(255,255,255,0.14)" stroke-width="1"/>
-  <text x="19" y="33" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700" letter-spacing="-0.5" fill="#dbe1ea" text-anchor="middle">JR<tspan dy="-7" font-size="13">2</tspan></text>
-  <text x="58" y="24" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700" letter-spacing="0.06em" fill="#dbe1ea">Tech</text>
+  <!-- J azul · R rojo · exponente 2 blanco -->
+  <text x="13" y="33" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700" fill="#2f6fed" text-anchor="middle">J</text>
+  <text x="27" y="33" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700" fill="#e0342c" text-anchor="middle">R</text>
+  <text x="36" y="24" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" fill="#ffffff">2</text>
+  <text x="58" y="24" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700" letter-spacing="0.06em" fill="#ffffff">Tech</text>
   <text x="58" y="40" font-family="Arial, Helvetica, sans-serif" font-size="8.5" font-weight="500" letter-spacing="0.14em" fill="#8b94a7">JUNIOR RICO REYES</text>
 </svg>
