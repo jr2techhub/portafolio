@@ -128,6 +128,10 @@
       fieldProject: "Tipo de proyecto",
       fieldMessage: "Mensaje",
       sendMessage: "Enviar mensaje",
+      sendingMessage: "Enviando…",
+      messageSent: "¡Mensaje enviado! Gracias por contactarme.",
+      messageNotConfigured: "El formulario aún no está conectado. Puedes escribirme a ricocsharp@gmail.com.",
+      messageSendError: "No se pudo enviar el mensaje. Inténtalo de nuevo o escríbeme a ricocsharp@gmail.com.",
       aboutMe: "Sobre mí",
       aboutTitle: "Lidero soluciones digitales complejas para empresas que necesitan operar mejor y crecer con confianza.",
       aboutText: "Soy Ingeniero de Software Senior con más de 20 años de experiencia desarrollando sistemas empresariales, integraciones heterogéneas, plataformas de gestión, automatización y soluciones cloud para sectores como logística, turismo, comercio, e-commerce y producción. He trabajado tanto en la arquitectura como en la ejecución técnica, guiando equipos y entregando software crítico para negocio.",
@@ -177,6 +181,10 @@
       fieldProject: "Project type",
       fieldMessage: "Message",
       sendMessage: "Send message",
+      sendingMessage: "Sending…",
+      messageSent: "Message sent! Thanks for reaching out.",
+      messageNotConfigured: "The form is not connected yet. You can email me at ricocsharp@gmail.com.",
+      messageSendError: "The message could not be sent. Please try again or email me at ricocsharp@gmail.com.",
       aboutMe: "About me",
       aboutTitle: "I lead complex digital solutions for companies that need to operate better and scale with confidence.",
       aboutText: "I am a Senior Software Engineer with more than 20 years of experience building enterprise systems, heterogeneous integrations, management platforms, automation, and cloud solutions for sectors such as logistics, tourism, commerce, e-commerce, and production. I have worked both in architecture and technical execution, leading teams and delivering critical software for business operations.",
@@ -378,6 +386,10 @@
       if (emailInput && L.fieldEmail) emailInput.placeholder = idioma === "en" ? "you@email.com" : "tu@email.com";
       if (projectInput && L.fieldProject) projectInput.placeholder = idioma === "en" ? "AI, backend, integration..." : "IA, backend, integración...";
       if (msgInput && L.fieldMessage) msgInput.placeholder = idioma === "en" ? "Tell me briefly what you need..." : "Cuéntame brevemente qué necesitas...";
+      const status = document.getElementById("chatbot-status");
+      if (status?.dataset.messageKey && L[status.dataset.messageKey]) {
+        status.textContent = L[status.dataset.messageKey];
+      }
     }
   }
 
@@ -519,16 +531,55 @@
 
   chatbotForm?.addEventListener("submit", (ev) => {
     ev.preventDefault();
+    if (!chatbotForm.reportValidity()) return;
+
+    const endpoint = chatbotForm.dataset.endpoint?.trim();
+    const status = document.getElementById("chatbot-status");
+    const submitButton = chatbotForm.querySelector('[type="submit"]');
+    const L = t();
+
+    const mostrarEstado = (key, isError = false) => {
+      if (!status) return;
+      status.dataset.messageKey = key;
+      status.textContent = L[key];
+      status.classList.toggle("error", isError);
+      status.hidden = false;
+    };
+
+    if (!endpoint || !/^https:\/\/formspree\.io\/f\/[\w-]+$/.test(endpoint)) {
+      mostrarEstado("messageNotConfigured", true);
+      return;
+    }
+
     const formData = new FormData(chatbotForm);
-    const nombre = (formData.get("nombre") || "").toString().trim();
-    const email = (formData.get("email") || "").toString().trim();
-    const proyecto = (formData.get("proyecto") || "").toString().trim();
-    const mensaje = (formData.get("mensaje") || "").toString().trim();
-    const asunto = encodeURIComponent((proyecto || "Consulta") + " - Portafolio");
-    const cuerpo = encodeURIComponent(
-      `Hola,\n\nNombre: ${nombre || "No indicado"}\nEmail: ${email}\nTipo de proyecto: ${proyecto || "No indicado"}\n\nMensaje:\n${mensaje}`
-    );
-    window.location.href = `mailto:ricocsharp@gmail.com?subject=${asunto}&body=${cuerpo}`;
+    const project = (formData.get("proyecto") || "").toString().trim();
+    formData.append("_subject", `${project || (idioma === "en" ? "Contact request" : "Consulta de contacto")} - Portafolio`);
+
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.dataset.originalText = submitButton.textContent;
+      submitButton.textContent = L.sendingMessage;
+    }
+    if (status) status.hidden = true;
+
+    fetch(endpoint, {
+      method: "POST",
+      body: formData,
+      headers: { Accept: "application/json" },
+    })
+      .then((response) => {
+        if (!response.ok) throw new Error("Form submission failed");
+        chatbotForm.reset();
+        mostrarEstado("messageSent");
+      })
+      .catch(() => mostrarEstado("messageSendError", true))
+      .finally(() => {
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.textContent = submitButton.dataset.originalText || L.sendMessage;
+          delete submitButton.dataset.originalText;
+        }
+      });
   });
 
   document.querySelectorAll(".chatbot-option").forEach((btn) => {

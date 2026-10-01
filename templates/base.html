@@ -225,7 +225,8 @@
         <button type="button" class="chatbot-option" data-option="integracion" data-chat-lang="optionIntegracion">Integración</button>
       </div>
 
-      <form class="chatbot-form" id="chatbot-form">
+      <form class="chatbot-form" id="chatbot-form" data-endpoint="">
+        <input type="text" name="_gotcha" class="chatbot-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
         <label>
           <span data-chat-lang="fieldName">Nombre</span>
           <input type="text" name="nombre" placeholder="Tu nombre" autocomplete="name" />
@@ -243,6 +244,7 @@
           <textarea name="mensaje" rows="3" placeholder="Cuéntame brevemente qué necesitas..." required></textarea>
         </label>
         <button type="submit" class="chatbot-submit" data-chat-lang="sendMessage">Enviar mensaje</button>
+        <p class="chatbot-status" id="chatbot-status" role="status" aria-live="polite" hidden></p>
       </form>
     </div>
   </div>
