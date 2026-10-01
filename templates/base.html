@@ -43,13 +43,13 @@
             <text x="36" y="23" text-anchor="middle" font-size="10.5" letter-spacing="0" fill="#eef2f8">2</text>
           </g>
         </svg>
-        <span class="nombre-marca">JR<span class="marca-2"><sup>2</sup></span> <span class="marca-suave">Tech Portafolio</span></span>
+        <span class="nombre-marca">JR<span class="marca-2"><sup>2</sup></span> <span class="marca-suave" data-es="Tech Portafolio" data-en="Tech Portfolio">Tech Portafolio</span></span>
       </a>
       <div class="barra-acciones">
         <nav aria-label="Navegación principal">
           <a href="#proyectos" data-es="Proyectos" data-en="Projects">Proyectos</a>
           <a href="https://github.com/{{USUARIO_GITHUB}}" target="_blank" rel="noopener me">GitHub</a>
-          <a href="mailto:{{EMAIL}}" data-es="Contacto" data-en="Contact">Contacto</a>
+          <a href="#chatbot-panel" data-open-chat data-es="Contacto" data-en="Contact">Contacto</a>
         </nav>
         <div class="selector-idioma" id="selector-idioma" role="group" aria-label="Seleccionar idioma / Select language">
           <button type="button" class="idioma-btn activo" data-idioma="es" aria-pressed="true" title="Español">ES</button>
@@ -63,17 +63,17 @@
     <div class="hero-contenido">
       <img class="avatar" src="{{AVATAR}}" alt="Foto de perfil de {{NOMBRE}}" width="96" height="96" loading="eager" />
       <div class="hero-texto">
-        <h1>Hola, soy <span class="accent">{{NOMBRE}}</span></h1>
-        <p class="rol">{{TITULO_PROFESIONAL}}</p>
-        <p class="subtitulo">{{RESUMEN}}</p>
+        <h1 data-es="Hola, soy " data-en="Hi, I’m ">Hola, soy <span class="accent">{{NOMBRE}}</span></h1>
+        <p class="rol" data-es="{{TITULO_PROFESIONAL}}" data-en="Senior Software Engineer · AI, PHP, Backend, Cloud &amp; Integration">{{TITULO_PROFESIONAL}}</p>
+        <p class="subtitulo" data-es="{{RESUMEN}}" data-en="Senior software engineer with 20+ years of experience leading applied AI, backend, PHP, integration, automation, cloud, and advanced analytics projects across logistics, tourism, retail, e-commerce, and manufacturing.">{{RESUMEN}}</p>
         <nav class="links" aria-label="Enlaces de contacto">
           <a id="btn-ver-proyectos" class="chip chip-primario" href="#proyectos" data-es="Ver proyectos" data-en="View projects">Ver proyectos</a>
-          <a id="btn-hablemos" class="chip" href="mailto:{{EMAIL}}" data-es="Hablemos" data-en="Let's talk">Hablemos</a>
+          <a id="btn-hablemos" class="chip" href="#chatbot-panel" data-open-chat data-es="Hablemos" data-en="Let's talk">Hablemos</a>
           <a class="chip" href="https://github.com/{{USUARIO_GITHUB}}" target="_blank" rel="noopener me">
             <svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.62-.01 1.05.58 1.2.82.72 1.2 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
             GitHub
           </a>
-          <span class="chip chip-estatico">{{CANTIDAD}} proyectos publicados</span>
+          <span class="chip chip-estatico" data-es-suffix=" proyectos publicados" data-en-suffix=" published projects">{{CANTIDAD}} proyectos publicados</span>
         </nav>
       </div>
       <!-- Slider alegórico de proyectos -->
@@ -97,23 +97,23 @@
           <p id="sobre-mi-texto" data-es="Soy Ingeniero de Software Senior con más de 20 años de experiencia desarrollando sistemas empresariales, integraciones heterogéneas, plataformas de gestión, automatización y soluciones cloud para sectores como logística, turismo, comercio, e-commerce y producción. He trabajado tanto en la arquitectura como en la ejecución técnica, guiando equipos y entregando software crítico para negocio." data-en="I am a Senior Software Engineer with more than 20 years of experience building enterprise systems, heterogeneous integrations, management platforms, automation, and cloud solutions for sectors such as logistics, tourism, commerce, e-commerce, and production. I have worked both in architecture and in technical execution, leading teams and delivering critical software for business operations.">Soy Ingeniero de Software Senior con más de 20 años de experiencia desarrollando sistemas empresariales, integraciones heterogéneas, plataformas de gestión, automatización y soluciones cloud para sectores como logística, turismo, comercio, e-commerce y producción. He trabajado tanto en la arquitectura como en la ejecución técnica, guiando equipos y entregando software crítico para negocio.</p>
           <div class="about-points">
             <span>Backend & APIs</span>
-            <span>PHP & Integraciones</span>
+            <span data-es="PHP &amp; Integraciones" data-en="PHP &amp; Integrations">PHP &amp; Integraciones</span>
             <span>Cloud & DevOps</span>
-            <span>IA & Data</span>
+            <span data-es="IA &amp; Data" data-en="AI &amp; Data">IA &amp; Data</span>
           </div>
         </div>
         <div class="about-panel" aria-label="Resumen profesional">
           <div class="metric">
             <strong>+5</strong>
-            <span>años construyendo software</span>
+            <span data-es="años construyendo software" data-en="years building software">años construyendo software</span>
           </div>
           <div class="metric">
             <strong>20+</strong>
-            <span>proyectos y soluciones</span>
+            <span data-es="proyectos y soluciones" data-en="projects and solutions">proyectos y soluciones</span>
           </div>
           <div class="metric">
             <strong>100%</strong>
-            <span>orientado a negocio y resultados</span>
+            <span data-es="orientado a negocio y resultados" data-en="focused on business outcomes">orientado a negocio y resultados</span>
           </div>
         </div>
       </div>
@@ -126,20 +126,20 @@
       </div>
       <div class="stack-grid">
         <article class="stack-card">
-          <h3>Backend & APIs</h3>
-          <p>Arquitecturas empresariales, servicios REST, APIs robustas y plataformas de negocio con alta disponibilidad.</p>
+          <h3 data-es="Backend &amp; APIs" data-en="Backend &amp; APIs">Backend &amp; APIs</h3>
+          <p data-es="Arquitecturas empresariales, servicios REST, APIs robustas y plataformas de negocio con alta disponibilidad." data-en="Enterprise architectures, REST services, robust APIs, and highly available business platforms.">Arquitecturas empresariales, servicios REST, APIs robustas y plataformas de negocio con alta disponibilidad.</p>
         </article>
         <article class="stack-card">
-          <h3>PHP & Integration</h3>
-          <p>Aplicaciones empresariales, e-commerce, integraciones, APIs y servicios backend con enfoque en mantenimiento y escalabilidad.</p>
+          <h3 data-es="PHP &amp; Integraciones" data-en="PHP &amp; Integration">PHP &amp; Integration</h3>
+          <p data-es="Aplicaciones empresariales, e-commerce, integraciones, APIs y servicios backend con enfoque en mantenimiento y escalabilidad." data-en="Enterprise applications, e-commerce, integrations, APIs, and backend services built for maintainability and scale.">Aplicaciones empresariales, e-commerce, integraciones, APIs y servicios backend con enfoque en mantenimiento y escalabilidad.</p>
         </article>
         <article class="stack-card">
-          <h3>Cloud & DevOps</h3>
-          <p>Despliegues en AWS, automatización de infraestructura, pipelines CI/CD y entornos preparados para producción.</p>
+          <h3 data-es="Cloud &amp; DevOps" data-en="Cloud &amp; DevOps">Cloud &amp; DevOps</h3>
+          <p data-es="Despliegues en AWS, automatización de infraestructura, pipelines CI/CD y entornos preparados para producción." data-en="AWS deployments, infrastructure automation, CI/CD pipelines, and production-ready environments.">Despliegues en AWS, automatización de infraestructura, pipelines CI/CD y entornos preparados para producción.</p>
         </article>
         <article class="stack-card">
-          <h3>IA & Data</h3>
-          <p>Modelos predictivos, NLP, enriquecimiento de datos, detección de anomalías y análisis para decisiones inteligentes.</p>
+          <h3 data-es="IA &amp; Data" data-en="AI &amp; Data">IA &amp; Data</h3>
+          <p data-es="Modelos predictivos, NLP, enriquecimiento de datos, detección de anomalías y análisis para decisiones inteligentes." data-en="Predictive models, NLP, data enrichment, anomaly detection, and analytics that support smarter decisions.">Modelos predictivos, NLP, enriquecimiento de datos, detección de anomalías y análisis para decisiones inteligentes.</p>
         </article>
       </div>
       <div class="cta-panel">
@@ -147,7 +147,7 @@
           <p id="cta-etiqueta" class="eyebrow" data-es="¿Tienes un proyecto?" data-en="Have a project in mind?">¿Tienes un proyecto?</p>
           <h3 id="cta-titulo" data-es="Construyamos una solución que reduzca fricción, escale y genere valor real." data-en="Let’s build a solution that reduces friction, scales efficiently and creates real value.">Construyamos una solución que reduzca fricción, escale y genere valor real.</h3>
         </div>
-        <a id="btn-consultoria" class="chip chip-primario" href="mailto:{{EMAIL}}" data-es="Solicitar una consultoría" data-en="Request a consultation">Solicitar una consultoría</a>
+        <a id="btn-consultoria" class="chip chip-primario" href="#chatbot-panel" data-open-chat data-es="Solicitar una consultoría" data-en="Request a consultation">Solicitar una consultoría</a>
       </div>
     </section>
 

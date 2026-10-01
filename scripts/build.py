@@ -201,6 +201,7 @@ def tarjeta_proyecto(p):
     anio = (p.get("fecha") or "")[:4]
     meta_partes = [x for x in [categoria, anio] if x]
     return f"""        <article class="card{' card-destacada' if p.get('destacado') else ''}"
+                 data-project-id="{e(p.get('id', ''))}"
                  data-categoria="{e(p.get('categoria', 'otros'))}"
                  style="--acento:{color_proyecto(p)}">
           <div class="card-top">
@@ -238,7 +239,7 @@ def slide_proyecto(p, i):
     if len(desc) > 150:
         desc = desc[:150].rsplit(" ", 1)[0] + "…"
     fondo = imagen_slide(p)
-    return f"""          <div class="slide{' activo' if i == 0 else ''}" role="group" aria-roledescription="diapositiva" aria-label="{i + 1} de {{TOTAL}}: {e(p['nombre'])}" style="--acento:{color_proyecto(p)}; --fondo-slide:url('{fondo}')">
+    return f"""          <div class="slide{' activo' if i == 0 else ''}" data-project-id="{e(p.get('id', ''))}" role="group" aria-roledescription="diapositiva" aria-label="{i + 1} de {{TOTAL}}: {e(p['nombre'])}" style="--acento:{color_proyecto(p)}; --fondo-slide:url('{fondo}')">
             <div class="slide-fondo" aria-hidden="true"></div>
             <div class="slide-capa">
               <div class="slide-icono"><svg viewBox="0 0 16 16" width="26" height="26" aria-hidden="true">{icono}</svg></div>
