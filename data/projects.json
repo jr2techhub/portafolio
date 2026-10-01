@@ -29,7 +29,8 @@
       ],
       "categoria": "backend",
       "destacado": true,
-      "fecha": "2026-09-10"
+      "fecha": "2026-09-10",
+      "privado": true
     },
     {
       "id": "marketscrapersolution",
@@ -47,7 +48,8 @@
       ],
       "categoria": "datos",
       "destacado": true,
-      "fecha": "2026-09-18"
+      "fecha": "2026-09-18",
+      "privado": true
     },
     {
       "id": "market-scraper-app",
@@ -104,7 +106,8 @@
       ],
       "categoria": "integraciones",
       "destacado": true,
-      "fecha": "2026-08-27"
+      "fecha": "2026-08-27",
+      "privado": true
     },
     {
       "id": "hublanding",
