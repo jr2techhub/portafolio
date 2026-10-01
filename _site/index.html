@@ -19,7 +19,7 @@
   <meta name="twitter:title" content="Manuel Javier Jiménez Rico · Portafolio" />
   <meta name="twitter:description" content="Ingeniero de software senior con más de 20 años de experiencia liderando proyectos de IA aplicada, backend, PHP, integración, automatización, cloud y analítica avanzada para sectores como logística, turismo, comercio, e-commerce y producción." />
   <link rel="preconnect" href="https://github.com" />
-  <link rel="stylesheet" href="styles.6771fb4f79.css" />
+  <link rel="stylesheet" href="styles.9a5eddcdaf.css" />
   <script>document.documentElement.classList.add("js")</script>
 </head>
 <body>
@@ -358,7 +358,7 @@
   </footer>
 
     <script id="datos-portafolio" type="application/json">[{"id": "tropicfeel-netsuite-integration", "nombre": "Tropicfeel NetSuite Integration", "descripcion": "Integración E-commerce ↔ ERP: microservicio broker en Java/Spring que sincroniza ítems, órdenes de compra y envíos inbound entre NetSuite, Everstox/Deliverr y marketplaces mediante flujos de eventos y colas DLQ.", "repo": "jr2techhub/tropicfeel-netsuite-integration", "url": "https://github.com/jr2techhub/tropicfeel-netsuite-integration", "demo": null, "tecnologias": ["Java", "Spring Boot", "NetSuite", "Everstox API", "Jenkins", "Docker"], "categoria": "integraciones", "destacado": true, "fecha": "2026-08-27", "privado": true}, {"id": "market-scraper-app", "nombre": "market-scraper-app", "descripcion": "Aplicación web del ecosistema MarketScraper: dashboard interactivo construido con React 19 + Vite, gráficos con Recharts, i18n con i18next y diseño modular en SCSS. Publicada en GitHub Pages con despliegue automático.", "repo": "jr2techhub/market-scraper-app", "url": "https://github.com/jr2techhub/market-scraper-app", "demo": "https://jr2techhub.github.io/market-scraper-app/", "tecnologias": ["React 19", "Vite", "Recharts", "i18next", "SCSS", "GitHub Pages"], "categoria": "frontend", "destacado": true, "fecha": "2026-09-03"}, {"id": "erp-lite", "nombre": "ERP-Lite", "descripcion": "ERP modular multi-tenant (SaaS) para pequeños emprendimientos construido con .NET 10 y Clean Architecture. Frontend Blazor WASM, PostgreSQL vía EF Core, pagos con Stripe e integración de IA con Google Gemini (LightERP.AI).", "repo": "jr2techhub/ERP-Lite", "url": "https://github.com/jr2techhub/ERP-Lite", "demo": null, "tecnologias": ["C#", ".NET 10", "Blazor WASM", "PostgreSQL", "EF Core", "Clean Architecture", "Stripe", "Google Gemini"], "categoria": "backend", "destacado": true, "fecha": "2026-09-10", "privado": true}, {"id": "marketscrapersolution", "nombre": "MarketScraperSolution", "descripcion": "Plataforma de web scraping y procesamiento de datos en .NET para recopilar y analizar anuncios clasificados de múltiples marketplaces. Incluye un Dynamic Market Intelligence Agent con patrones de scraping configurables vía JSON (no-code).", "repo": "jr2techhub/MarketScraperSolution", "url": "https://github.com/jr2techhub/MarketScraperSolution", "demo": null, "tecnologias": ["C#", ".NET", "Web Scraping", "Pattern Engine", "JSON Config"], "categoria": "datos", "destacado": true, "fecha": "2026-09-18", "privado": true}, {"id": "hublanding", "nombre": "Hublanding", "descripcion": "Landing page del Hub tecnológico.", "repo": "jr2techhub/Hublanding", "url": "https://github.com/jr2techhub/Hublanding", "demo": null, "tecnologias": ["HTML", "CSS"], "categoria": "frontend", "destacado": false, "fecha": "2026-08-10"}, {"id": "techhub-sso", "nombre": "TechHub-SSO", "descripcion": "Servidor de identidad centralizado (Single Sign-On) para el ecosistema TechHub basado en OpenIddict y .NET 10. OAuth2 / OpenID Connect con flujo Authorization Code + PKCE, gestión multi-tenant y trials automáticos.", "repo": "jr2techhub/TechHub-SSO", "url": "https://github.com/jr2techhub/TechHub-SSO", "demo": null, "tecnologias": ["C#", ".NET 10", "OpenIddict", "OAuth2", "OpenID Connect", "PKCE"], "categoria": "backend", "destacado": false, "fecha": "2026-09-10"}, {"id": "portafolio", "nombre": "Portafolio (este sitio)", "descripcion": "Sitio del portafolio generado estáticamente con Python y publicado en GitHub Pages. Se auto-sincroniza con la API de GitHub: cada nuevo repo aparece automáticamente al ejecutarse el workflow.", "repo": "jr2techhub/portafolio", "url": "https://github.com/jr2techhub/portafolio", "demo": "https://jr2techhub.github.io/portafolio/", "tecnologias": ["Python", "GitHub Actions", "GitHub Pages", "REST API"], "categoria": "web", "destacado": false, "fecha": "2026-09-26"}]</script>
-  <script src="app.80336729d6.js" defer></script>
+  <script src="app.0bded6e02a.js" defer></script>
 
   <!-- Ficha de detalle (se rellena dinámicamente al hacer clic en una tarjeta) -->
   <div class="modal" id="modal-detalle" role="dialog" aria-modal="true" aria-labelledby="detalle-nombre" hidden>
@@ -395,7 +395,8 @@
         <button type="button" class="chatbot-option" data-option="integracion" data-chat-lang="optionIntegracion">Integración</button>
       </div>
 
-      <form class="chatbot-form" id="chatbot-form">
+      <form class="chatbot-form" id="chatbot-form" data-endpoint="">
+        <input type="text" name="_gotcha" class="chatbot-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
         <label>
           <span data-chat-lang="fieldName">Nombre</span>
           <input type="text" name="nombre" placeholder="Tu nombre" autocomplete="name" />
@@ -413,6 +414,7 @@
           <textarea name="mensaje" rows="3" placeholder="Cuéntame brevemente qué necesitas..." required></textarea>
         </label>
         <button type="submit" class="chatbot-submit" data-chat-lang="sendMessage">Enviar mensaje</button>
+        <p class="chatbot-status" id="chatbot-status" role="status" aria-live="polite" hidden></p>
       </form>
     </div>
   </div>
