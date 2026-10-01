@@ -354,11 +354,6 @@
       const emailInput = form.querySelector('input[name="email"]');
       const projectInput = form.querySelector('input[name="proyecto"]');
       const msgInput = form.querySelector('textarea[name="mensaje"]');
-      const toggle = document.getElementById("chatbot-toggle");
-      const closeBtn = document.getElementById("chatbot-close");
-
-      if (toggle) toggle.setAttribute("aria-label", idioma === "en" ? "Open contact assistant" : "Abrir asistente de contacto");
-      if (closeBtn) closeBtn.setAttribute("aria-label", idioma === "en" ? "Close contact assistant" : "Cerrar asistente de contacto");
       if (nameInput && L.fieldName) nameInput.placeholder = idioma === "en" ? "Your name" : "Tu nombre";
       if (emailInput && L.fieldEmail) emailInput.placeholder = idioma === "en" ? "you@email.com" : "tu@email.com";
       if (projectInput && L.fieldProject) projectInput.placeholder = idioma === "en" ? "AI, backend, integration..." : "IA, backend, integración...";
