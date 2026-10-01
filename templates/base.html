@@ -67,8 +67,8 @@
         <p class="rol">{{TITULO_PROFESIONAL}}</p>
         <p class="subtitulo">{{RESUMEN}}</p>
         <nav class="links" aria-label="Enlaces de contacto">
-          <a class="chip chip-primario" href="#proyectos">Ver proyectos</a>
-          <a class="chip" href="mailto:{{EMAIL}}">Hablemos</a>
+          <a id="btn-ver-proyectos" class="chip chip-primario" href="#proyectos" data-es="Ver proyectos" data-en="View projects">Ver proyectos</a>
+          <a id="btn-hablemos" class="chip" href="mailto:{{EMAIL}}" data-es="Hablemos" data-en="Let's talk">Hablemos</a>
           <a class="chip" href="https://github.com/{{USUARIO_GITHUB}}" target="_blank" rel="noopener me">
             <svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.62-.01 1.05.58 1.2.82.72 1.2 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
             GitHub
@@ -92,16 +92,12 @@
     <section class="seccion about" aria-labelledby="titulo-sobre-mi">
       <div class="about-grid">
         <div class="about-copy">
-          <p class="eyebrow">Sobre mí</p>
-          <h2 id="titulo-sobre-mi">Lidero soluciones digitales complejas para empresas que necesitan operar mejor y crecer con confianza.</h2>
-          <p>
-            Soy Ingeniero de Software Senior con más de 20 años de experiencia desarrollando sistemas empresariales, integraciones heterogéneas,
-            plataformas de gestión, automatización y soluciones cloud para sectores como logística, turismo, comercio, e-commerce y producción.
-            He trabajado tanto en la arquitectura como en la ejecución técnica, guiando equipos y entregando software crítico para negocio.
-          </p>
+          <p id="sobre-mi-etiqueta" class="eyebrow" data-es="Sobre mí" data-en="About me">Sobre mí</p>
+          <h2 id="titulo-sobre-mi" data-es="Lidero soluciones digitales complejas para empresas que necesitan operar mejor y crecer con confianza." data-en="I lead complex digital solutions for companies that need to operate better and scale with confidence.">Lidero soluciones digitales complejas para empresas que necesitan operar mejor y crecer con confianza.</h2>
+          <p id="sobre-mi-texto" data-es="Soy Ingeniero de Software Senior con más de 20 años de experiencia desarrollando sistemas empresariales, integraciones heterogéneas, plataformas de gestión, automatización y soluciones cloud para sectores como logística, turismo, comercio, e-commerce y producción. He trabajado tanto en la arquitectura como en la ejecución técnica, guiando equipos y entregando software crítico para negocio." data-en="I am a Senior Software Engineer with more than 20 years of experience building enterprise systems, heterogeneous integrations, management platforms, automation, and cloud solutions for sectors such as logistics, tourism, commerce, e-commerce, and production. I have worked both in architecture and in technical execution, leading teams and delivering critical software for business operations.">Soy Ingeniero de Software Senior con más de 20 años de experiencia desarrollando sistemas empresariales, integraciones heterogéneas, plataformas de gestión, automatización y soluciones cloud para sectores como logística, turismo, comercio, e-commerce y producción. He trabajado tanto en la arquitectura como en la ejecución técnica, guiando equipos y entregando software crítico para negocio.</p>
           <div class="about-points">
             <span>Backend & APIs</span>
-            <span>Integraciones empresariales</span>
+            <span>PHP & Integraciones</span>
             <span>Cloud & DevOps</span>
             <span>IA & Data</span>
           </div>
@@ -125,8 +121,8 @@
 
     <section class="seccion stack" aria-labelledby="titulo-stack">
       <div class="section-header">
-        <p class="eyebrow">Especialidades</p>
-        <h2 id="titulo-stack">Soluciones técnicas pensadas para crecer negocio y operación.</h2>
+        <p id="stack-etiqueta" class="eyebrow" data-es="Especialidades" data-en="Specialties">Especialidades</p>
+        <h2 id="titulo-stack" data-es="Soluciones técnicas pensadas para crecer negocio y operación." data-en="Technical solutions designed to grow business operations and performance.">Soluciones técnicas pensadas para crecer negocio y operación.</h2>
       </div>
       <div class="stack-grid">
         <article class="stack-card">
@@ -134,8 +130,8 @@
           <p>Arquitecturas empresariales, servicios REST, APIs robustas y plataformas de negocio con alta disponibilidad.</p>
         </article>
         <article class="stack-card">
-          <h3>Integration & Messaging</h3>
-          <p>Integración de ERP, e-commerce, logística, mensajería, event-driven architectures y sistemas heterogéneos.</p>
+          <h3>PHP & Integration</h3>
+          <p>Aplicaciones empresariales, e-commerce, integraciones, APIs y servicios backend con enfoque en mantenimiento y escalabilidad.</p>
         </article>
         <article class="stack-card">
           <h3>Cloud & DevOps</h3>
@@ -148,10 +144,10 @@
       </div>
       <div class="cta-panel">
         <div>
-          <p class="eyebrow">¿Tienes un proyecto?</p>
-          <h3>Construyamos una solución que reduzca fricción, escale y genere valor real.</h3>
+          <p id="cta-etiqueta" class="eyebrow" data-es="¿Tienes un proyecto?" data-en="Have a project in mind?">¿Tienes un proyecto?</p>
+          <h3 id="cta-titulo" data-es="Construyamos una solución que reduzca fricción, escale y genere valor real." data-en="Let’s build a solution that reduces friction, scales efficiently and creates real value.">Construyamos una solución que reduzca fricción, escale y genere valor real.</h3>
         </div>
-        <a class="chip chip-primario" href="mailto:{{EMAIL}}">Solicitar una consultoría</a>
+        <a id="btn-consultoria" class="chip chip-primario" href="mailto:{{EMAIL}}" data-es="Solicitar una consultoría" data-en="Request a consultation">Solicitar una consultoría</a>
       </div>
     </section>
 
