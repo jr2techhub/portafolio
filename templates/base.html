@@ -45,8 +45,11 @@
         </svg>
         <span class="nombre-marca" data-es="Tech Portafolio" data-en="Tech Portfolio">Tech Portafolio</span>
       </a>
-      <div class="barra-acciones">
-        <nav aria-label="Navegación principal">
+      <div class="barra-acciones" id="barra-acciones">
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="main-nav">
+          <span></span><span></span><span></span>
+        </button>
+        <nav class="main-nav" id="main-nav" aria-label="Navegación principal" aria-hidden="false">
           <a href="#proyectos" data-es="Proyectos" data-en="Projects">Proyectos</a>
           <a href="https://github.com/{{USUARIO_GITHUB}}" target="_blank" rel="noopener me">GitHub</a>
           <a href="#chatbot-panel" data-open-chat data-es="Contacto" data-en="Contact">Contacto</a>

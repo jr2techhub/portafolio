@@ -282,7 +282,11 @@ def construir():
 
     nombre = perfil.get("nombre", "Portafolio")
     descripcion = perfil.get("descripcion", "")
-    url_base = f"https://{perfil.get('usuario_github', '')}.github.io/portafolio/"
+    custom_domain = str(perfil.get("custom_domain", "") or "").strip()
+    if custom_domain:
+        url_base = f"https://{custom_domain}/"
+    else:
+        url_base = f"https://{perfil.get('usuario_github', '')}.github.io/portafolio/"
 
     # --- Assets con hash de contenido ---
     SITE.mkdir(parents=True, exist_ok=True)
@@ -325,6 +329,10 @@ def construir():
     pagina = pagina.replace("{{DATOS_JSON}}", datos_json)
     (SITE / "index.html").write_text(pagina, encoding="utf-8")
     (SITE / ".nojekyll").write_text("", encoding="utf-8")
+
+    custom_domain_file = RAIZ / "CNAME"
+    if custom_domain_file.exists():
+        shutil.copy2(custom_domain_file, SITE / "CNAME")
 
     # sitemap sencillo
     sitemap = (
