@@ -136,81 +136,113 @@ def glifo_proyecto(p):
 
 
 def imagen_slide(p):
-    """Estilo premium y editorial para la imagen del slider."""
-    cat = p.get("categoria", "otros")
-    oscuro, vivo = PALETAS_CATEGORIA.get(cat, PALETAS_CATEGORIA["otros"])
-    nombre = re.sub(r"\s*\(.*?\)\s*", "", str(p.get("nombre", ""))).strip()
-    titulo = nombre[:22]
-    if len(nombre) > 22:
-        titulo = nombre[:21] + "…"
-    glifo = glifo_proyecto(p)
-    icon = GLIFOS_TECH.get(glifo, GLIFOS_TECH["star"]).format(c=vivo)
-    svg = f"""<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 560' preserveAspectRatio='xMidYMid slice'>
-  <defs>
-    <linearGradient id='bg' x1='0' y1='0' x2='1' y2='1'>
-      <stop offset='0' stop-color='{oscuro}'/>
-      <stop offset='0.5' stop-color='#09111d'/>
-      <stop offset='1' stop-color='#05070d'/>
-    </linearGradient>
-    <linearGradient id='pulse' x1='0' y1='0' x2='1' y2='0'>
-      <stop offset='0' stop-color='{vivo}' stop-opacity='0.8'/>
-      <stop offset='1' stop-color='{vivo}' stop-opacity='0.12'/>
-    </linearGradient>
-    <filter id='soft-glow'><feGaussianBlur stdDeviation='14' result='blur'/><feMerge><feMergeNode in='blur'/><feMergeNode in='SourceGraphic'/></feMerge></filter>
-  </defs>
-  <rect width='900' height='560' fill='url(#bg)'/>
-  <circle cx='710' cy='110' r='210' fill='{vivo}' opacity='0.08'/>
-  <circle cx='250' cy='460' r='180' fill='{vivo}' opacity='0.06'/>
-  <path d='M0 440 C 180 360, 300 450, 440 410 S 720 300, 900 380 L900 560 L0 560 Z' fill='rgba(255,255,255,0.03)'/>
-  <g opacity='0.2'>
-    <path d='M40 100 H860' stroke='rgba(255,255,255,0.08)'/>
-    <path d='M40 180 H860' stroke='rgba(255,255,255,0.08)'/>
-    <path d='M40 260 H860' stroke='rgba(255,255,255,0.08)'/>
-    <path d='M40 340 H860' stroke='rgba(255,255,255,0.08)'/>
-    <path d='M40 420 H860' stroke='rgba(255,255,255,0.08)'/>
-  </g>
-  <g transform='translate(455 90)'>
-    <rect x='0' y='0' width='340' height='220' rx='22' fill='rgba(12,18,29,0.8)' stroke='rgba(255,255,255,0.09)'/>
-    <rect x='20' y='22' width='92' height='12' rx='6' fill='rgba(255,255,255,0.13)'/>
-    <rect x='20' y='46' width='140' height='10' rx='5' fill='rgba(255,255,255,0.08)'/>
-    <rect x='20' y='72' width='300' height='118' rx='16' fill='rgba(255,255,255,0.03)' stroke='rgba(255,255,255,0.07)'/>
-    <rect x='38' y='96' width='102' height='58' rx='12' fill='rgba(255,255,255,0.07)'/>
-    <rect x='158' y='96' width='62' height='58' rx='12' fill='rgba(255,255,255,0.07)'/>
-    <rect x='238' y='96' width='54' height='58' rx='12' fill='rgba(255,255,255,0.07)'/>
-    <path d='M38 160 L75 142 L108 151 L150 121 L186 135 L236 103 L296 140' fill='none' stroke='{vivo}' stroke-width='4' stroke-linecap='round' stroke-linejoin='round' />
-    <circle cx='75' cy='142' r='5' fill='{vivo}'/>
-    <circle cx='186' cy='135' r='5' fill='{vivo}'/>
-    <circle cx='296' cy='140' r='5' fill='{vivo}'/>
-    <rect x='22' y='198' width='96' height='8' rx='4' fill='rgba(255,255,255,0.12)'/>
-    <rect x='128' y='198' width='58' height='8' rx='4' fill='rgba(255,255,255,0.08)'/>
-  </g>
-  <g transform='translate(100 165)'>
-    <rect x='0' y='0' width='260' height='200' rx='20' fill='rgba(8,15,23,0.42)' stroke='rgba(255,255,255,0.08)'/>
-    <rect x='20' y='20' width='150' height='14' rx='7' fill='rgba(255,255,255,0.12)'/>
-    <text x='20' y='72' font-family='Arial, Helvetica, sans-serif' font-size='26' font-weight='700' fill='white'>{titulo}</text>
-    <g transform='translate(20 96)'>
-      <g><rect x='150' y='40' width='62' height='16' rx='8' fill='rgba(255,255,255,0.08)' /><text x='162' y='52' font-family='Arial, Helvetica, sans-serif' font-size='8' fill='rgba(255,255,255,0.8)'>{str((p.get("tecnologias") or [""])[0])[:10]}</text></g>
-    </g>
-    <rect x='20' y='136' width='168' height='10' rx='5' fill='rgba(255,255,255,0.09)'/>
-    <rect x='20' y='154' width='140' height='10' rx='5' fill='rgba(255,255,255,0.06)'/>
-    <g transform='translate(190 40)' filter='url(#soft-glow)'>
-      <rect x='0' y='0' width='42' height='42' rx='12' fill='rgba(255,255,255,0.04)' stroke='rgba(255,255,255,0.12)'/>
-      <g transform='translate(11 11) scale(1.2)'>{icon}</g>
-    </g>
-  </g>
-  <g transform='translate(520 350)'>
-    <rect x='0' y='0' width='220' height='124' rx='18' fill='rgba(7,11,18,0.8)' stroke='rgba(255,255,255,0.08)'/>
-    <rect x='18' y='20' width='118' height='10' rx='5' fill='rgba(255,255,255,0.12)'/>
-    <rect x='18' y='42' width='78' height='8' rx='4' fill='rgba(255,255,255,0.08)'/>
-    <rect x='18' y='72' width='184' height='26' rx='13' fill='url(#pulse)' opacity='0.9'/>
-    <circle cx='164' cy='86' r='16' fill='{vivo}' opacity='0.18'/>
-    <circle cx='164' cy='86' r='9' fill='{vivo}'/>
-  </g>
-</svg>"""
-    replacements = {"&": chr(37) + "26", "<": chr(37) + "3C", ">": chr(37) + "3E", '"': chr(37) + "22", "'": chr(37) + "27", "#": chr(37) + "23"}
-    for ch, repl in replacements.items():
-        svg = svg.replace(ch, repl)
-    return "data:image/svg+xml," + svg
+        """Estilo visual inspirado en ilustraciones abstractas tipo LinkedIn: personas, redes y paneles premium."""
+        cat = p.get("categoria", "otros")
+        oscuro, vivo = PALETAS_CATEGORIA.get(cat, PALETAS_CATEGORIA["otros"])
+        nombre = re.sub(r"\s*\(.*?\)\s*", "", str(p.get("nombre", ""))).strip()
+        titulo = nombre[:24]
+        if len(nombre) > 24:
+                titulo = nombre[:23] + "…"
+
+        svg = f"""<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 560' preserveAspectRatio='xMidYMid slice'>
+            <defs>
+                <linearGradient id='bg' x1='0' y1='0' x2='1' y2='1'>
+                    <stop offset='0' stop-color='{oscuro}'/>
+                    <stop offset='0.45' stop-color='#0b1220'/>
+                    <stop offset='1' stop-color='#05070d'/>
+                </linearGradient>
+                <linearGradient id='accent' x1='0' y1='0' x2='1' y2='0'>
+                    <stop offset='0' stop-color='{vivo}' stop-opacity='0.95'/>
+                    <stop offset='1' stop-color='#8b5cf6' stop-opacity='0.4'/>
+                </linearGradient>
+                <filter id='glow'><feGaussianBlur stdDeviation='14' result='blur'/><feMerge><feMergeNode in='blur'/><feMergeNode in='SourceGraphic'/></feMerge></filter>
+            </defs>
+
+            <rect width='900' height='560' fill='url(#bg)'/>
+            <circle cx='750' cy='90' r='180' fill='{vivo}' opacity='0.08'/>
+            <circle cx='210' cy='440' r='160' fill='{vivo}' opacity='0.07'/>
+            <path d='M0 440 C 170 360, 290 450, 440 408 S 700 310, 900 370 L900 560 L0 560 Z' fill='rgba(255,255,255,0.03)'/>
+
+            <g opacity='0.18'>
+                <path d='M45 110 H855' stroke='rgba(255,255,255,0.12)'/>
+                <path d='M45 200 H855' stroke='rgba(255,255,255,0.12)'/>
+                <path d='M45 290 H855' stroke='rgba(255,255,255,0.12)'/>
+                <path d='M45 380 H855' stroke='rgba(255,255,255,0.12)'/>
+            </g>
+
+            <g transform='translate(120 130)'>
+                <circle cx='110' cy='75' r='54' fill='rgba(7,11,18,0.58)' stroke='rgba(255,255,255,0.08)'/>
+                <circle cx='110' cy='56' r='21' fill='{vivo}' opacity='0.18'/>
+                <circle cx='110' cy='56' r='16' fill='{vivo}' opacity='0.9'/>
+                <path d='M78 146c10-28 26-42 56-42 30 0 47 14 56 42v40H78z' fill='rgba(255,255,255,0.08)' stroke='rgba(255,255,255,0.08)'/>
+                <path d='M78 146c11 16 29 26 52 26 24 0 42-10 54-26' fill='none' stroke='{vivo}' stroke-width='3' stroke-linecap='round' opacity='0.8'/>
+                <g stroke='{vivo}' stroke-width='2.2' stroke-linecap='round' opacity='0.8'>
+                    <path d='M26 174 L62 154'/>
+                    <path d='M190 154 L228 174'/>
+                    <path d='M62 154 L95 119'/>
+                    <path d='M190 154 L160 119'/>
+                </g>
+                <g fill='{vivo}' opacity='0.9'>
+                    <circle cx='62' cy='154' r='5'/>
+                    <circle cx='228' cy='174' r='5'/>
+                    <circle cx='95' cy='119' r='5'/>
+                    <circle cx='160' cy='119' r='5'/>
+                </g>
+            </g>
+
+            <g transform='translate(470 118)'>
+                <rect x='0' y='0' width='325' height='200' rx='22' fill='rgba(12,18,29,0.82)' stroke='rgba(255,255,255,0.08)'/>
+                <rect x='20' y='20' width='110' height='12' rx='6' fill='rgba(255,255,255,0.12)'/>
+                <rect x='144' y='20' width='54' height='12' rx='6' fill='rgba(255,255,255,0.08)'/>
+                <rect x='20' y='52' width='160' height='10' rx='5' fill='rgba(255,255,255,0.08)'/>
+                <rect x='20' y='78' width='285' height='94' rx='16' fill='rgba(255,255,255,0.03)' stroke='rgba(255,255,255,0.07)'/>
+                <rect x='38' y='98' width='84' height='52' rx='12' fill='rgba(255,255,255,0.06)'/>
+                <rect x='132' y='98' width='56' height='52' rx='12' fill='rgba(255,255,255,0.06)'/>
+                <rect x='200' y='98' width='86' height='52' rx='12' fill='rgba(255,255,255,0.06)'/>
+                <path d='M44 148 L92 126 L128 138 L170 111 L214 124 L260 100 L293 116' fill='none' stroke='{vivo}' stroke-width='4' stroke-linecap='round' stroke-linejoin='round' opacity='0.85'/>
+                <circle cx='92' cy='126' r='5' fill='{vivo}'/>
+                <circle cx='170' cy='111' r='5' fill='{vivo}'/>
+                <circle cx='293' cy='116' r='5' fill='{vivo}'/>
+                <rect x='24' y='176' width='90' height='8' rx='4' fill='rgba(255,255,255,0.11)'/>
+                <rect x='122' y='176' width='68' height='8' rx='4' fill='rgba(255,255,255,0.08)'/>
+            </g>
+
+            <g transform='translate(92 300)'>
+                <rect x='0' y='0' width='320' height='176' rx='24' fill='rgba(8,14,23,0.62)' stroke='rgba(255,255,255,0.08)'/>
+                <rect x='26' y='26' width='142' height='12' rx='6' fill='rgba(255,255,255,0.12)'/>
+                <text x='26' y='78' font-family='Arial, Helvetica, sans-serif' font-size='30' font-weight='700' fill='white'>{titulo}</text>
+                <rect x='25' y='98' width='90' height='10' rx='5' fill='rgba(255,255,255,0.09)'/>
+                <rect x='25' y='116' width='140' height='10' rx='5' fill='rgba(255,255,255,0.08)'/>
+                <g transform='translate(220 30)' filter='url(#glow)'>
+                    <rect x='0' y='0' width='54' height='54' rx='16' fill='rgba(255,255,255,0.04)' stroke='rgba(255,255,255,0.12)'/>
+                    <circle cx='27' cy='27' r='14' fill='{vivo}' opacity='0.2'/>
+                    <path d='M27 16a11 11 0 1 1 0 22 11 11 0 0 1 0-22zm-8 28c2.7-4.7 7.2-7 14-7s11.3 2.3 14 7' fill='none' stroke='{vivo}' stroke-width='2.1' stroke-linecap='round' stroke-linejoin='round'/>
+                </g>
+            </g>
+
+            <g transform='translate(492 344)'>
+                <rect x='0' y='0' width='250' height='120' rx='22' fill='rgba(10,16,28,0.82)' stroke='rgba(255,255,255,0.08)'/>
+                <rect x='18' y='18' width='96' height='11' rx='5.5' fill='rgba(255,255,255,0.12)'/>
+                <rect x='18' y='42' width='116' height='9' rx='4.5' fill='rgba(255,255,255,0.08)'/>
+                <rect x='18' y='70' width='198' height='24' rx='12' fill='url(#accent)' opacity='0.9'/>
+                <circle cx='202' cy='82' r='16' fill='{vivo}' opacity='0.18'/>
+                <circle cx='202' cy='82' r='8' fill='{vivo}'/>
+            </g>
+
+            <g opacity='0.8'>
+                <path d='M608 450 L698 430 L760 470' fill='none' stroke='rgba(255,255,255,0.18)' stroke-width='2.2'/>
+                <circle cx='608' cy='450' r='6' fill='{vivo}'/>
+                <circle cx='698' cy='430' r='6' fill='{vivo}' opacity='0.7'/>
+                <circle cx='760' cy='470' r='6' fill='{vivo}' opacity='0.9'/>
+            </g>
+        </svg>"""
+
+        replacements = {"&": chr(37) + "26", "<": chr(37) + "3C", ">": chr(37) + "3E", '"': chr(37) + "22", "'": chr(37) + "27", "#": chr(37) + "23"}
+        for ch, repl in replacements.items():
+                svg = svg.replace(ch, repl)
+
+        return "data:image/svg+xml," + svg
+
 def formatear_fecha(iso):
     try:
         y, m, d = iso.split("-")
