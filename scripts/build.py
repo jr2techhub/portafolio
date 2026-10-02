@@ -136,40 +136,81 @@ def glifo_proyecto(p):
 
 
 def imagen_slide(p):
-    """Genera una imagen SVG alegórica del proyecto (fondo del slide)."""
+    """Estilo premium y editorial para la imagen del slider."""
     cat = p.get("categoria", "otros")
     oscuro, vivo = PALETAS_CATEGORIA.get(cat, PALETAS_CATEGORIA["otros"])
-    nombre = re.sub(r"\s*\(.*?\)\s*", "", str(p.get("nombre", ""))).strip().upper()
-    iniciales = "".join(w[0] for w in nombre.split()[:2]) or "JS"
-    glifo = GLIFOS_TECH[glifo_proyecto(p)].format(c=vivo)
-    svg = f"""<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 500' preserveAspectRatio='xMidYMid slice'>
+    nombre = re.sub(r"\s*\(.*?\)\s*", "", str(p.get("nombre", ""))).strip()
+    titulo = nombre[:22]
+    if len(nombre) > 22:
+        titulo = nombre[:21] + "…"
+    glifo = glifo_proyecto(p)
+    icon = GLIFOS_TECH.get(glifo, GLIFOS_TECH["star"]).format(c=vivo)
+    svg = f"""<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 560' preserveAspectRatio='xMidYMid slice'>
   <defs>
-    <linearGradient id='g' x1='0' y1='0' x2='1' y2='1'>
+    <linearGradient id='bg' x1='0' y1='0' x2='1' y2='1'>
       <stop offset='0' stop-color='{oscuro}'/>
+      <stop offset='0.5' stop-color='#09111d'/>
       <stop offset='1' stop-color='#05070d'/>
     </linearGradient>
-    <pattern id='grid' width='40' height='40' patternUnits='userSpaceOnUse'>
-      <path d='M40 0H0v40' fill='none' stroke='rgba(255,255,255,0.055)' stroke-width='1'/>
-    </pattern>
+    <linearGradient id='pulse' x1='0' y1='0' x2='1' y2='0'>
+      <stop offset='0' stop-color='{vivo}' stop-opacity='0.8'/>
+      <stop offset='1' stop-color='{vivo}' stop-opacity='0.12'/>
+    </linearGradient>
+    <filter id='soft-glow'><feGaussianBlur stdDeviation='14' result='blur'/><feMerge><feMergeNode in='blur'/><feMergeNode in='SourceGraphic'/></feMerge></filter>
   </defs>
-  <rect width='800' height='500' fill='url(#g)'/>
-  <rect width='800' height='500' fill='url(#grid)'/>
-  <circle cx='705' cy='75' r='150' fill='{vivo}' opacity='.10'/>
-  <circle cx='95' cy='430' r='110' fill='{vivo}' opacity='.07'/>
-  <text x='32' y='118' font-family='Arial, Helvetica, sans-serif' font-size='150' font-weight='800' fill='{vivo}' opacity='.13'>{iniciales}</text>
-  <g transform='translate(560 105) scale(6.2)' opacity='.4'>{glifo}</g>
-  <path d='M0 470 C 150 425 300 500 450 462 S 720 415 800 452' fill='none' stroke='{vivo}' stroke-width='3' opacity='.35'/>
-  <path d='M0 492 C 180 455 340 512 500 482 S 740 445 800 476' fill='none' stroke='{vivo}' stroke-width='2' opacity='.2'/>
+  <rect width='900' height='560' fill='url(#bg)'/>
+  <circle cx='710' cy='110' r='210' fill='{vivo}' opacity='0.08'/>
+  <circle cx='250' cy='460' r='180' fill='{vivo}' opacity='0.06'/>
+  <path d='M0 440 C 180 360, 300 450, 440 410 S 720 300, 900 380 L900 560 L0 560 Z' fill='rgba(255,255,255,0.03)'/>
+  <g opacity='0.2'>
+    <path d='M40 100 H860' stroke='rgba(255,255,255,0.08)'/>
+    <path d='M40 180 H860' stroke='rgba(255,255,255,0.08)'/>
+    <path d='M40 260 H860' stroke='rgba(255,255,255,0.08)'/>
+    <path d='M40 340 H860' stroke='rgba(255,255,255,0.08)'/>
+    <path d='M40 420 H860' stroke='rgba(255,255,255,0.08)'/>
+  </g>
+  <g transform='translate(455 90)'>
+    <rect x='0' y='0' width='340' height='220' rx='22' fill='rgba(12,18,29,0.8)' stroke='rgba(255,255,255,0.09)'/>
+    <rect x='20' y='22' width='92' height='12' rx='6' fill='rgba(255,255,255,0.13)'/>
+    <rect x='20' y='46' width='140' height='10' rx='5' fill='rgba(255,255,255,0.08)'/>
+    <rect x='20' y='72' width='300' height='118' rx='16' fill='rgba(255,255,255,0.03)' stroke='rgba(255,255,255,0.07)'/>
+    <rect x='38' y='96' width='102' height='58' rx='12' fill='rgba(255,255,255,0.07)'/>
+    <rect x='158' y='96' width='62' height='58' rx='12' fill='rgba(255,255,255,0.07)'/>
+    <rect x='238' y='96' width='54' height='58' rx='12' fill='rgba(255,255,255,0.07)'/>
+    <path d='M38 160 L75 142 L108 151 L150 121 L186 135 L236 103 L296 140' fill='none' stroke='{vivo}' stroke-width='4' stroke-linecap='round' stroke-linejoin='round' />
+    <circle cx='75' cy='142' r='5' fill='{vivo}'/>
+    <circle cx='186' cy='135' r='5' fill='{vivo}'/>
+    <circle cx='296' cy='140' r='5' fill='{vivo}'/>
+    <rect x='22' y='198' width='96' height='8' rx='4' fill='rgba(255,255,255,0.12)'/>
+    <rect x='128' y='198' width='58' height='8' rx='4' fill='rgba(255,255,255,0.08)'/>
+  </g>
+  <g transform='translate(100 165)'>
+    <rect x='0' y='0' width='260' height='200' rx='20' fill='rgba(8,15,23,0.42)' stroke='rgba(255,255,255,0.08)'/>
+    <rect x='20' y='20' width='150' height='14' rx='7' fill='rgba(255,255,255,0.12)'/>
+    <text x='20' y='72' font-family='Arial, Helvetica, sans-serif' font-size='26' font-weight='700' fill='white'>{titulo}</text>
+    <g transform='translate(20 96)'>
+      <g><rect x='150' y='40' width='62' height='16' rx='8' fill='rgba(255,255,255,0.08)' /><text x='162' y='52' font-family='Arial, Helvetica, sans-serif' font-size='8' fill='rgba(255,255,255,0.8)'>{str((p.get("tecnologias") or [""])[0])[:10]}</text></g>
+    </g>
+    <rect x='20' y='136' width='168' height='10' rx='5' fill='rgba(255,255,255,0.09)'/>
+    <rect x='20' y='154' width='140' height='10' rx='5' fill='rgba(255,255,255,0.06)'/>
+    <g transform='translate(190 40)' filter='url(#soft-glow)'>
+      <rect x='0' y='0' width='42' height='42' rx='12' fill='rgba(255,255,255,0.04)' stroke='rgba(255,255,255,0.12)'/>
+      <g transform='translate(11 11) scale(1.2)'>{icon}</g>
+    </g>
+  </g>
+  <g transform='translate(520 350)'>
+    <rect x='0' y='0' width='220' height='124' rx='18' fill='rgba(7,11,18,0.8)' stroke='rgba(255,255,255,0.08)'/>
+    <rect x='18' y='20' width='118' height='10' rx='5' fill='rgba(255,255,255,0.12)'/>
+    <rect x='18' y='42' width='78' height='8' rx='4' fill='rgba(255,255,255,0.08)'/>
+    <rect x='18' y='72' width='184' height='26' rx='13' fill='url(#pulse)' opacity='0.9'/>
+    <circle cx='164' cy='86' r='16' fill='{vivo}' opacity='0.18'/>
+    <circle cx='164' cy='86' r='9' fill='{vivo}'/>
+  </g>
 </svg>"""
-    # Data URI (URL-encoded, segura dentro de style="...")
-    desde = "<>&\"' \n\t#"
-    hasta = ["%3C", "%3E", "%26", "%22", "%27", "%20", "", "", "%23"]
-    codificada = svg.replace("\n", "").replace("  ", "")
-    for ch in desde:
-        codificada = codificada.replace(ch, hasta[desde.index(ch)])
-    return "data:image/svg+xml," + codificada
-
-
+    replacements = {"&": chr(37) + "26", "<": chr(37) + "3C", ">": chr(37) + "3E", '"': chr(37) + "22", "'": chr(37) + "27", "#": chr(37) + "23"}
+    for ch, repl in replacements.items():
+        svg = svg.replace(ch, repl)
+    return "data:image/svg+xml," + svg
 def formatear_fecha(iso):
     try:
         y, m, d = iso.split("-")
