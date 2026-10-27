@@ -141,6 +141,21 @@
       "categoria": "web",
       "destacado": false,
       "fecha": "2026-09-26"
+    },
+    {
+      "id": "ipv",
+      "nombre": "ipv",
+      "descripcion": "Repositorio ipv (Kotlin).",
+      "repo": "jr2techhub/ipv",
+      "url": "https://github.com/jr2techhub/ipv",
+      "demo": null,
+      "tecnologias": [
+        "Kotlin"
+      ],
+      "categoria": "otros",
+      "destacado": false,
+      "fecha": "2026-10-26",
+      "sugerido": true
     }
   ]
 }
