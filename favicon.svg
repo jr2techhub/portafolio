@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>JR²</title>
+  <defs>
+    <linearGradient id="lg-fav" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4a7dff"/>
+      <stop offset="1" stop-color="#e0342c"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="17" fill="#0b101c"/>
+  <rect x="2" y="2" width="60" height="60" rx="15.5" fill="none" stroke="url(#lg-fav)" stroke-opacity="0.5" stroke-width="1.8"/>
+  <!-- Bloque JR² centrado: ancho óptico ~44.5 → margen izquierdo 9.75 -->
+  <g font-family="'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-weight="800" text-rendering="geometricPrecision">
+    <text x="16.64" y="39.06" font-size="24" fill="#4a7dff">J</text>
+    <text x="22.14" y="39.06" font-size="24" fill="#e0342c">R</text>
+    <text x="40.61" y="31.94" font-size="14" fill="#eef2f8">2</text>
+  </g>
+</svg>
