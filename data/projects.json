@@ -156,6 +156,21 @@
       "destacado": false,
       "fecha": "2026-10-29",
       "sugerido": true
+    },
+    {
+      "id": "javatest",
+      "nombre": "javatest",
+      "descripcion": "repo for a job test",
+      "repo": "jr2techhub/javatest",
+      "url": "https://github.com/jr2techhub/javatest",
+      "demo": null,
+      "tecnologias": [
+        "Java"
+      ],
+      "categoria": "otros",
+      "destacado": false,
+      "fecha": "2026-11-24",
+      "sugerido": true
     }
   ]
 }
